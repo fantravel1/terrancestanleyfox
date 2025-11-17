@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Terry Fox: Marathon of Hope Game | Run Across Canada</title>
+    <title>Terry Fox: Marathon of Hope - The Journey | Run for Cancer Research</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Play the Terry Fox Marathon of Hope game! Guide Terry across Canada while learning about his incredible journey and legacy. Educational running game honoring a Canadian hero.">
-    <meta name="keywords" content="Terry Fox game, Marathon of Hope game, educational game, Terry Fox facts, Canadian hero game, running game">
+    <meta name="description" content="Experience Terry Fox's incredible Marathon of Hope. Follow his journey across Canada, collect donations, and learn about the legacy that changed the world.">
+    <meta name="keywords" content="Terry Fox game, Marathon of Hope, cancer research, educational game, inspiring journey">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
             overflow: hidden;
             height: 100vh;
             width: 100vw;
@@ -47,56 +47,106 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: clamp(8px, 2vw, 15px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: clamp(10px, 2vw, 15px);
             z-index: 1000;
-            flex-wrap: wrap;
-            gap: 10px;
         }
 
         .game-title {
-            font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+            font-size: clamp(1rem, 3vw, 1.5rem);
             font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .game-stats {
-            display: flex;
-            gap: clamp(8px, 2vw, 20px);
-            font-size: clamp(0.75rem, 2vw, 1rem);
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
         }
 
         .stat {
-            display: flex;
-            align-items: center;
-            gap: 4px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 4px 8px;
-            border-radius: 12px;
+            padding: 8px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-label {
+            opacity: 0.7;
+            font-size: 0.8em;
+            display: block;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.2em;
+            display: block;
+            margin-top: 2px;
         }
 
         .stat.highlight {
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            animation: pulse 1s ease-in-out infinite;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Determination Meter */
+        .determination-meter {
+            position: absolute;
+            top: clamp(120px, 25vh, 180px);
+            left: 20px;
+            right: 20px;
+            z-index: 900;
+        }
+
+        .meter-label {
+            color: white;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .meter-bar-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            height: clamp(20px, 5vw, 30px);
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .meter-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffd700, #4ecdc4);
+            transition: width 0.3s ease;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .meter-bar.low {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
         }
 
         /* Game World */
         .game-world {
             position: absolute;
-            top: clamp(50px, 15vw, 80px);
+            top: clamp(180px, 35vh, 280px);
             left: 0;
             right: 0;
-            bottom: clamp(80px, 20vw, 120px);
-            background: linear-gradient(180deg, #87CEEB 0%, #90EE90 40%, #228B22 100%);
+            bottom: 100px;
+            background: linear-gradient(180deg, #87CEEB 0%, #90EE90 60%, #228B22 100%);
             overflow: hidden;
         }
 
@@ -106,20 +156,20 @@
             bottom: 0;
             left: 0;
             width: 200%;
-            height: clamp(100px, 25vh, 200px);
+            height: clamp(120px, 30vh, 200px);
             background:
-                linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 45%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 55%, transparent 100%),
-                repeating-linear-gradient(90deg, transparent 0px, transparent 40px, rgba(255,255,255,0.6) 40px, rgba(255,255,255,0.6) 60px),
+                linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 45%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.2) 55%, transparent 100%),
+                repeating-linear-gradient(90deg, transparent 0px, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 60px),
                 #404040;
-            animation: roadScroll 4s linear infinite;
+            animation: roadScroll 3s linear infinite;
+        }
+
+        .road.slow {
+            animation-duration: 5s;
         }
 
         .road.fast {
             animation-duration: 2s;
-        }
-
-        .road.slow {
-            animation-duration: 6s;
         }
 
         @keyframes roadScroll {
@@ -130,64 +180,44 @@
         /* Terry Fox Character */
         .terry {
             position: absolute;
-            bottom: clamp(60px, 15vh, 120px);
-            left: 20%;
-            font-size: clamp(3rem, 10vw, 5rem);
+            bottom: clamp(80px, 20vh, 140px);
+            left: 25%;
+            font-size: clamp(4rem, 12vw, 6rem);
             z-index: 100;
-            transition: all 0.2s ease;
-            animation: runBounce 0.5s ease-in-out infinite;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+            animation: steadyRun 1s ease-in-out infinite;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
         }
 
-        .terry.jumping {
-            animation: jump 0.6s ease-in-out;
-        }
-
-        .terry.ducking {
-            transform: scaleY(0.5) scaleX(-1);
-            animation: none;
-        }
-
-        .terry.hit {
-            animation: shake 0.5s ease-in-out;
-            filter: brightness(0.5) drop-shadow(0 0 20px red);
-        }
-
-        @keyframes runBounce {
+        @keyframes steadyRun {
             0%, 100% { transform: scaleX(-1) translateY(0px); }
-            50% { transform: scaleX(-1) translateY(-15px); }
+            50% { transform: scaleX(-1) translateY(-12px); }
         }
 
-        @keyframes jump {
-            0% { bottom: clamp(60px, 15vh, 120px); }
-            50% { bottom: clamp(150px, 35vh, 280px); }
-            100% { bottom: clamp(60px, 15vh, 120px); }
+        .terry.tired {
+            animation-duration: 1.5s;
+            opacity: 0.9;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0) scaleX(-1); }
-            25% { transform: translateX(-10px) scaleX(-1); }
-            75% { transform: translateX(10px) scaleX(-1); }
+        .terry.determined {
+            animation-duration: 0.7s;
+            filter: drop-shadow(0 8px 20px rgba(255, 215, 0, 0.6));
         }
 
-        /* Obstacles */
-        .obstacle {
+        /* Supporters/Donors */
+        .supporter {
             position: absolute;
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            animation: obstacleMove 3s linear;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            animation: supporterMove 4s linear;
             z-index: 90;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
-        .obstacle.low {
-            bottom: clamp(60px, 15vh, 120px);
+        .supporter:active {
+            transform: scale(1.2);
         }
 
-        .obstacle.high {
-            bottom: clamp(150px, 35vh, 280px);
-        }
-
-        @keyframes obstacleMove {
+        @keyframes supporterMove {
             0% {
                 right: -100px;
                 opacity: 0;
@@ -200,316 +230,195 @@
             }
         }
 
-        /* Collectibles */
-        .collectible {
+        /* Donations Floating Up */
+        .donation-collect {
             position: absolute;
-            font-size: clamp(2rem, 6vw, 3rem);
-            animation: collectibleMove 4s linear, collectibleFloat 1s ease-in-out infinite;
-            z-index: 85;
-            cursor: pointer;
-        }
-
-        @keyframes collectibleMove {
-            0% { right: -100px; }
-            100% { right: 100vw; }
-        }
-
-        @keyframes collectibleFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Power-up Effects */
-        .invincible .terry {
-            animation: invincibleGlow 0.3s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px gold);
-        }
-
-        @keyframes invincibleGlow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .speed-boost .road {
-            animation-duration: 1.5s !important;
-        }
-
-        /* Landmarks */
-        .landmark {
-            position: absolute;
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            animation: landmarkMove 8s linear;
-            z-index: 50;
-            opacity: 0.7;
-        }
-
-        @keyframes landmarkMove {
-            0% {
-                transform: translateX(100vw) scale(0.5);
-                opacity: 0;
-            }
-            15% { opacity: 0.7; }
-            85% { opacity: 0.7; }
-            100% {
-                transform: translateX(-20vw) scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        /* Score Popup */
-        .score-popup {
-            position: absolute;
-            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             font-weight: bold;
             color: #ffd700;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: scoreFloat 1s ease-out forwards;
-            z-index: 150;
+            animation: donationFloat 1.5s ease-out forwards;
+            z-index: 200;
             pointer-events: none;
         }
 
-        @keyframes scoreFloat {
+        @keyframes donationFloat {
             0% {
                 transform: translateY(0) scale(0.5);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) scale(1.5);
+                transform: translateY(-150px) scale(1.5);
                 opacity: 0;
             }
         }
 
-        /* Combo Counter */
-        .combo-counter {
-            position: absolute;
-            top: clamp(60px, 18vw, 100px);
-            right: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #ffd700);
-            color: white;
-            padding: clamp(10px, 3vw, 20px);
-            border-radius: 20px;
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.5);
-            z-index: 200;
-            transform: scale(0);
-            transition: transform 0.3s ease;
-        }
-
-        .combo-counter.active {
-            transform: scale(1);
-            animation: comboPulse 0.5s ease-in-out infinite;
-        }
-
-        @keyframes comboPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Mobile Controls */
-        .mobile-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: clamp(80px, 20vh, 120px);
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .control-btn {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-            border: 3px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            font-size: clamp(1.5rem, 5vw, 3rem);
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.1s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            touch-action: manipulation;
-            user-select: none;
-        }
-
-        .control-btn:active {
-            transform: scale(0.95);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-        }
-
-        .control-label {
-            font-size: clamp(0.6rem, 2vw, 0.9rem);
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* Pause/Menu Button */
-        .menu-btn {
-            position: absolute;
-            top: clamp(60px, 18vw, 100px);
-            left: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 15px;
-            width: clamp(50px, 12vw, 70px);
-            height: clamp(50px, 12vw, 70px);
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Pause Screen */
-        .pause-screen {
+        /* Weather Effects */
+        .weather-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            color: white;
-            text-align: center;
-            padding: 20px;
+            pointer-events: none;
+            z-index: 80;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        .pause-content h2 {
-            font-size: clamp(2rem, 8vw, 4rem);
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .weather-overlay.active {
+            opacity: 1;
         }
 
-        .pause-stats {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            margin: 20px 0;
-            line-height: 2;
+        .rain {
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 12px
+            );
+            animation: rainFall 0.5s linear infinite;
         }
 
-        .pause-stats div {
-            margin: 10px 0;
+        @keyframes rainFall {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 20px; }
         }
 
-        .resume-btn, .restart-btn {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-            border: none;
-            padding: clamp(12px, 3vw, 20px) clamp(25px, 6vw, 40px);
-            border-radius: 25px;
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            margin: 10px;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        .wind {
+            background: linear-gradient(90deg, transparent 0%, rgba(200, 200, 200, 0.3) 50%, transparent 100%);
+            animation: windBlow 2s ease-in-out infinite;
         }
 
-        .resume-btn:active, .restart-btn:active {
-            transform: scale(0.95);
+        @keyframes windBlow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
         }
 
-        .restart-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+        .sun {
+            background: radial-gradient(circle, rgba(255, 200, 0, 0.2) 0%, transparent 70%);
         }
 
-        /* Fact Bubble */
-        .fact-bubble {
+        /* Landmarks & Signs */
+        .landmark {
             position: absolute;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: clamp(15px, 4vw, 25px);
-            max-width: min(400px, 90vw);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 300;
-            animation: factAppear 0.5s ease-out;
-            border-left: 5px solid #ff6b6b;
+            font-size: clamp(3rem, 8vw, 5rem);
+            animation: landmarkMove 6s linear;
+            z-index: 50;
+            opacity: 0.8;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
         }
 
-        @keyframes factAppear {
+        @keyframes landmarkMove {
             0% {
-                transform: scale(0.8) translateY(20px);
+                right: -100px;
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1);
+            }
+            100% {
+                right: 100vw;
+                transform: scale(0.8);
+            }
+        }
+
+        /* City Sign */
+        .city-sign {
+            position: absolute;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: clamp(15px, 4vw, 25px);
+            border-radius: 15px;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 700;
+            animation: signMove 5s linear;
+            z-index: 85;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 3px solid white;
+        }
+
+        @keyframes signMove {
+            0% { right: -300px; }
+            100% { right: 100vw; }
+        }
+
+        /* Story Modal */
+        .story-modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 40px);
+            max-width: min(500px, 90vw);
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            display: none;
+            border: 4px solid #ff6b6b;
+        }
+
+        .story-modal.active {
+            display: block;
+            animation: modalAppear 0.5s ease-out;
+        }
+
+        @keyframes modalAppear {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
                 opacity: 0;
             }
             100% {
-                transform: scale(1) translateY(0);
+                transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
             }
         }
 
-        .fact-bubble h3 {
+        .story-modal h2 {
             color: #2c3e50;
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .fact-bubble p {
-            color: #5a6c7d;
-            line-height: 1.5;
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
-        }
-
-        .fact-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: clamp(1.3rem, 4vw, 2rem);
-            cursor: pointer;
-            color: #999;
-        }
-
-        /* Achievement Notification */
-        .achievement {
-            position: fixed;
-            top: clamp(100px, 25vw, 150px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, #ffd700, #ffed4a);
-            color: #2c3e50;
-            padding: clamp(12px, 3vw, 20px);
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            animation: achievementSlide 3s ease-in-out;
-            z-index: 500;
-            max-width: min(350px, 90vw);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        @keyframes achievementSlide {
-            0% { transform: translateX(-50%) translateY(-150px); opacity: 0; }
-            20%, 80% { transform: translateX(-50%) translateY(0); opacity: 1; }
-            100% { transform: translateX(-50%) translateY(-150px); opacity: 0; }
+        .story-modal .location {
+            color: #ff6b6b;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        .achievement h4 {
-            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
-            margin-bottom: 5px;
+        .story-modal p {
+            color: #5a6c7d;
+            line-height: 1.8;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            margin-bottom: 15px;
         }
 
-        .achievement p {
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
-            opacity: 0.8;
+        .story-modal .continue-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: clamp(12px, 3vw, 18px) clamp(30px, 6vw, 50px);
+            border-radius: 25px;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
-        /* Loading/Start Screen */
+        .story-modal .continue-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Start Screen */
         .start-screen {
             position: absolute;
             top: 0;
@@ -528,35 +437,43 @@
         }
 
         .start-screen h1 {
-            font-size: clamp(2rem, 10vw, 5rem);
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .start-screen .subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 600;
         }
 
         .start-screen p {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            margin-bottom: 30px;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            margin-bottom: 20px;
             max-width: 600px;
             line-height: 1.6;
+            opacity: 0.95;
         }
 
         .start-btn {
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
             border: none;
-            padding: clamp(15px, 4vw, 25px) clamp(35px, 8vw, 60px);
+            padding: clamp(15px, 4vw, 25px) clamp(40px, 8vw, 70px);
             border-radius: 30px;
-            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-size: clamp(1.3rem, 4vw, 2rem);
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.3s ease;
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
             animation: startBtnPulse 2s ease-in-out infinite;
+            margin-top: 20px;
         }
 
         @keyframes startBtnPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(255, 107, 107, 0.7); }
         }
 
         .start-btn:active {
@@ -564,51 +481,155 @@
             animation: none;
         }
 
-        .difficulty-select {
+        /* Info Panel */
+        .info-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: clamp(15px, 4vw, 25px);
+            z-index: 900;
+            border-top: 3px solid #ff6b6b;
+        }
+
+        .current-challenge {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .challenge-icon {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin: 0 10px;
+        }
+
+        .next-city {
+            text-align: center;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            opacity: 0.8;
+        }
+
+        /* Achievement */
+        .achievement {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #2c3e50;
+            padding: clamp(20px, 5vw, 30px);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            animation: achievementPop 3s ease-in-out;
+            z-index: 2500;
+            max-width: min(400px, 90vw);
+            text-align: center;
+        }
+
+        @keyframes achievementPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            20%, 80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        }
+
+        .achievement h3 {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            margin-bottom: 10px;
+        }
+
+        .achievement p {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            opacity: 0.9;
+        }
+
+        /* Pause Button */
+        .pause-btn {
+            position: absolute;
+            top: clamp(10px, 3vw, 20px);
+            right: clamp(10px, 3vw, 20px);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            width: clamp(50px, 12vw, 70px);
+            height: clamp(50px, 12vw, 70px);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+        }
+
+        /* Pause Screen */
+        .pause-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .pause-screen.active {
+            display: flex;
+        }
+
+        .pause-screen h2 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            margin-bottom: 30px;
+        }
+
+        .pause-stats {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin: 20px 0;
+            line-height: 2.5;
+        }
+
+        .pause-btn-group {
             display: flex;
             gap: 15px;
-            margin: 20px 0;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .difficulty-btn {
-            padding: clamp(10px, 2.5vw, 15px) clamp(20px, 5vw, 30px);
-            border-radius: 15px;
-            border: 2px solid white;
-            background: rgba(255, 255, 255, 0.1);
+        .resume-btn, .restart-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            border: none;
+            padding: clamp(12px, 3vw, 20px) clamp(25px, 6vw, 40px);
+            border-radius: 25px;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
-        .difficulty-btn.selected {
-            background: white;
-            color: #667eea;
-            transform: scale(1.1);
+        .restart-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
         }
 
-        /* Responsive Adjustments */
+        /* Responsive */
         @media (max-width: 768px) {
-            .game-header {
-                font-size: 0.8rem;
-            }
-
             .game-stats {
-                width: 100%;
-                justify-content: space-around;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (orientation: landscape) and (max-height: 500px) {
-            .mobile-controls {
-                height: 60px;
-            }
-
             .game-world {
-                bottom: 60px;
+                top: 120px;
+            }
+            .determination-meter {
+                top: 80px;
             }
         }
 
@@ -617,7 +638,6 @@
             * {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -626,390 +646,366 @@
     <div class="game-container">
         <!-- Start Screen -->
         <div class="start-screen" id="startScreen">
-            <h1>🏃 Terry Fox 🏃</h1>
-            <p>Marathon of Hope</p>
-            <p style="font-size: clamp(0.85rem, 2.5vw, 1.1rem); opacity: 0.9;">Dodge obstacles, collect coins, and run across Canada! Swipe or use buttons to jump and duck.</p>
-
-            <div class="difficulty-select">
-                <button class="difficulty-btn selected" data-difficulty="easy">Easy</button>
-                <button class="difficulty-btn" data-difficulty="normal">Normal</button>
-                <button class="difficulty-btn" data-difficulty="hard">Hard</button>
-            </div>
-
-            <button class="start-btn" id="startBtn">START RUNNING!</button>
+            <h1>🏃 TERRY FOX 🏃</h1>
+            <p class="subtitle">Marathon of Hope</p>
+            <p>On April 12, 1980, Terry Fox began an extraordinary journey across Canada with one leg and a dream to raise money for cancer research.</p>
+            <p>Experience his inspiring journey. Collect supporters and donations. Keep his determination strong through 143 days of running.</p>
+            <p style="font-weight: 600; color: #ffd700;">Tap supporters along the route to collect donations.<br>Watch the determination meter - keep Terry's hope alive!</p>
+            <button class="start-btn" id="startBtn">BEGIN THE JOURNEY</button>
         </div>
+
+        <!-- Pause Button -->
+        <button class="pause-btn" id="pauseBtn">⏸️</button>
 
         <!-- Game Header -->
         <div class="game-header">
-            <div class="game-title">Terry's Marathon of Hope</div>
+            <div class="game-title">Terry Fox: Marathon of Hope</div>
             <div class="game-stats">
-                <div class="stat">💯 <span id="score">0</span></div>
-                <div class="stat">💰 <span id="coins">0</span></div>
-                <div class="stat">📍 <span id="distance">0</span>km</div>
-                <div class="stat">❤️ <span id="lives">3</span></div>
+                <div class="stat">
+                    <span class="stat-label">📅 Day</span>
+                    <span class="stat-value" id="day">1</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">📍 Distance</span>
+                    <span class="stat-value"><span id="distance">0</span> km</span>
+                </div>
+                <div class="stat highlight">
+                    <span class="stat-label">💰 Raised</span>
+                    <span class="stat-value">$<span id="money">0</span></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">👥 Supporters</span>
+                    <span class="stat-value" id="supporters">0</span>
+                </div>
             </div>
         </div>
 
-        <!-- Combo Counter -->
-        <div class="combo-counter" id="comboCounter">
-            🔥 COMBO x<span id="comboValue">0</span>
+        <!-- Determination Meter -->
+        <div class="determination-meter">
+            <div class="meter-label">💪 DETERMINATION & HOPE</div>
+            <div class="meter-bar-container">
+                <div class="meter-bar" id="determinationBar" style="width: 100%"></div>
+            </div>
         </div>
-
-        <!-- Menu Button -->
-        <button class="menu-btn" id="menuBtn">⏸️</button>
 
         <!-- Game World -->
         <div class="game-world" id="gameWorld">
+            <div class="weather-overlay" id="weatherOverlay"></div>
             <div class="road" id="road"></div>
             <div class="terry" id="terry">🏃‍♂️</div>
         </div>
 
-        <!-- Mobile Controls -->
-        <div class="mobile-controls">
-            <button class="control-btn" id="jumpBtn">
-                <div>⬆️</div>
-                <div class="control-label">JUMP</div>
-            </button>
-            <button class="control-btn" id="factBtn">
-                <div>💡</div>
-                <div class="control-label">FACT</div>
-            </button>
-            <button class="control-btn" id="duckBtn">
-                <div>⬇️</div>
-                <div class="control-label">DUCK</div>
-            </button>
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <div class="current-challenge" id="challengeText">
+                <span class="challenge-icon" id="challengeIcon">☀️</span>
+                <span id="challengeMessage">Beautiful day for running!</span>
+            </div>
+            <div class="next-city">
+                Next milestone: <strong id="nextCity">Halifax, NS</strong> - <span id="kmToNext">500</span> km
+            </div>
+        </div>
+
+        <!-- Story Modal -->
+        <div class="story-modal" id="storyModal">
+            <h2 id="storyTitle">City Reached!</h2>
+            <div class="location" id="storyLocation"></div>
+            <div id="storyContent"></div>
+            <button class="continue-btn" id="continueBtn">Continue Running</button>
         </div>
 
         <!-- Pause Screen -->
         <div class="pause-screen" id="pauseScreen">
-            <div class="pause-content">
-                <h2>⏸️ Paused</h2>
-                <div class="pause-stats">
-                    <div>💯 Score: <strong id="pauseScore">0</strong></div>
-                    <div>💰 Coins: <strong id="pauseCoins">0</strong></div>
-                    <div>📍 Distance: <strong id="pauseDistance">0</strong> km</div>
-                    <div>🏆 High Score: <strong id="highScore">0</strong></div>
-                </div>
-                <button class="resume-btn" id="resumeBtn">CONTINUE</button>
-                <button class="restart-btn" id="restartBtn">RESTART</button>
+            <h2>⏸️ Rest Stop</h2>
+            <p style="font-size: clamp(1rem, 3vw, 1.3rem); margin: 20px 0; opacity: 0.9;">
+                "Even though I'm not running, in my heart I'll always be running."<br>- Terry Fox
+            </p>
+            <div class="pause-stats">
+                <div>📅 Day <strong id="pauseDay">1</strong> of 143</div>
+                <div>📍 <strong id="pauseDistance">0</strong> km of Terry's journey</div>
+                <div>💰 $<strong id="pauseMoney">0</strong> raised for cancer research</div>
+                <div>👥 <strong id="pauseSupporters">0</strong> supporters collected</div>
+            </div>
+            <div class="pause-btn-group">
+                <button class="resume-btn" id="resumeBtn">Continue Journey</button>
+                <button class="restart-btn" id="restartBtn">Restart</button>
             </div>
         </div>
     </div>
 
     <script>
-        class TerryFoxGame {
+        class TerryFoxJourney {
             constructor() {
-                this.score = 0;
-                this.coins = 0;
+                // Game state
                 this.distance = 0;
-                this.lives = 3;
-                this.combo = 0;
+                this.day = 1;
+                this.money = 0;
+                this.supporters = 0;
+                this.determination = 100;
                 this.isPaused = false;
-                this.isGameOver = false;
-                this.isJumping = false;
-                this.isDucking = false;
-                this.difficulty = 'easy';
-                this.invincible = false;
-                this.speedBoost = false;
-                this.highScore = localStorage.getItem('terryFoxHighScore') || 0;
+                this.currentCityIndex = 0;
 
-                this.difficultySettings = {
-                    easy: { obstacleSpeed: 3500, spawnRate: 2500, scoreMultiplier: 1 },
-                    normal: { obstacleSpeed: 2500, spawnRate: 1800, scoreMultiplier: 1.5 },
-                    hard: { obstacleSpeed: 1800, spawnRate: 1200, scoreMultiplier: 2 }
-                };
-
-                this.obstacles = ['🪨', '🌲', '🚧', '⛰️', '🦌'];
-                this.collectibles = [
-                    { emoji: '💰', value: 10, type: 'coin' },
-                    { emoji: '⭐', value: 50, type: 'star' },
-                    { emoji: '❤️', value: 0, type: 'heart' },
-                    { emoji: '⚡', value: 20, type: 'speed' },
-                    { emoji: '🛡️', value: 30, type: 'shield' }
+                // Cities along Terry's route with real facts
+                this.cities = [
+                    {
+                        name: "St. John's, NL",
+                        distance: 0,
+                        story: "On April 12, 1980, Terry Fox dipped his artificial leg in the Atlantic Ocean and began his Marathon of Hope. With little fanfare, he started running west, determined to cross Canada and raise money for cancer research.",
+                        icon: "🏠"
+                    },
+                    {
+                        name: "Halifax, NS",
+                        distance: 500,
+                        story: "As Terry ran through the Maritimes, his journey began to gain attention. People started to gather along the roads, inspired by his determination and courage. Every step brought hope to cancer patients across the country.",
+                        icon: "⚓"
+                    },
+                    {
+                        name: "Quebec City, QC",
+                        distance: 1200,
+                        story: "Running through Quebec, Terry faced language barriers but discovered that his mission transcended words. His dedication spoke louder than any language, inspiring donations from all Canadians.",
+                        icon: "🏰"
+                    },
+                    {
+                        name: "Montreal, QC",
+                        distance: 1400,
+                        story: "In Montreal, crowds began to swell. Terry's story was spreading across the nation. Despite running a marathon every single day, he made time to speak to supporters, share his dream, and inspire hope.",
+                        icon: "🌉"
+                    },
+                    {
+                        name: "Ottawa, ON",
+                        distance: 1600,
+                        story: "At the nation's capital, Terry met with officials and continued to gain support. His original goal was to raise $1 from every Canadian - about 24 million dollars. The dream was becoming reality.",
+                        icon: "🏛️"
+                    },
+                    {
+                        name: "Toronto, ON",
+                        distance: 1800,
+                        story: "Toronto gave Terry a hero's welcome. Thousands lined the streets. He was running 42 kilometers every single day, the equivalent of a full marathon, regardless of weather or pain.",
+                        icon: "🏗️"
+                    },
+                    {
+                        name: "Thunder Bay, ON",
+                        distance: 2300,
+                        story: "On September 1, 1980, after 143 days and 5,373 kilometers, Terry was forced to stop outside Thunder Bay. The cancer had returned, spreading to his lungs. Though his run ended, his legacy was just beginning.",
+                        icon: "⚡"
+                    }
                 ];
 
-                this.facts = [
-                    { title: "Terry's Beginning", text: "Terry Fox was born July 28, 1958, in Winnipeg, Manitoba. He moved to British Columbia with his family when he was young." },
-                    { title: "Cancer Diagnosis", text: "At age 18, Terry was diagnosed with osteogenic sarcoma (bone cancer) and had his right leg amputated 15 cm above the knee in 1977." },
-                    { title: "The Inspiration", text: "While in the hospital, Terry read about Dick Traum, a one-legged runner who completed the New York City Marathon. This inspired Terry's dream." },
-                    { title: "Training", text: "Terry trained for 14 months before beginning his Marathon of Hope, running over 5,000 kilometres to prepare for his cross-country journey." },
-                    { title: "The Start", text: "On April 12, 1980, Terry dipped his artificial leg in the Atlantic Ocean at St. John's, Newfoundland, and began his Marathon of Hope." },
-                    { title: "Daily Marathon", text: "Terry ran the equivalent of a marathon (42 km) every single day for 143 consecutive days, regardless of weather conditions." },
-                    { title: "Fundraising Goal", text: "Terry's original goal was to raise $1 for every Canadian - about 24 million people at the time. He far exceeded this goal." },
-                    { title: "The Stop", text: "On September 1, 1980, after 143 days and 5,373 km, Terry was forced to stop outside Thunder Bay, Ontario, when his cancer returned." },
-                    { title: "Legacy", text: "Terry passed away on June 28, 1981, but his legacy lives on. The annual Terry Fox Run has raised over $850 million for cancer research worldwide." },
-                    { title: "Global Impact", text: "Today, Terry Fox Runs take place in over 60 countries worldwide, with millions of participants continuing his mission to find a cure for cancer." }
+                // Weather challenges
+                this.weatherTypes = [
+                    { type: 'sun', icon: '☀️', message: 'Beautiful day for running!', class: 'sun', speedMultiplier: 1 },
+                    { type: 'rain', icon: '🌧️', message: 'Running through rain - Terry never stopped!', class: 'rain', speedMultiplier: 0.8 },
+                    { type: 'wind', icon: '💨', message: 'Strong headwinds - pushing forward!', class: 'wind', speedMultiplier: 0.7 },
+                    { type: 'heat', icon: '🔥', message: 'Scorching heat - staying determined!', class: 'sun', speedMultiplier: 0.85 }
                 ];
 
-                this.landmarks = ['🏠', '⚓', '🌲', '🏰', '🌉', '🏛️', '🏗️', '⚡', '🌾', '🌻', '🏔️', '🌊'];
+                this.currentWeather = this.weatherTypes[0];
+
+                // Supporter types
+                this.supporterTypes = [
+                    { emoji: '👨', value: 5, name: 'Supporter' },
+                    { emoji: '👩', value: 5, name: 'Supporter' },
+                    { emoji: '👴', value: 10, name: 'Donor' },
+                    { emoji: '👵', value: 10, name: 'Donor' },
+                    { emoji: '👨‍👩‍👧‍👦', value: 25, name: 'Family' },
+                    { emoji: '👥', value: 50, name: 'Community' },
+                    { emoji: '🏥', value: 100, name: 'Hospital' },
+                    { emoji: '🏢', value: 200, name: 'Corporation' }
+                ];
 
                 this.initializeGame();
             }
 
             initializeGame() {
-                // Difficulty selection
-                document.querySelectorAll('.difficulty-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
-                        e.target.classList.add('selected');
-                        this.difficulty = e.target.dataset.difficulty;
-                    });
-                });
-
-                // Start button
-                document.getElementById('startBtn').addEventListener('click', () => {
-                    this.startGame();
-                });
-
-                // Control buttons
-                document.getElementById('jumpBtn').addEventListener('click', () => this.jump());
-                document.getElementById('duckBtn').addEventListener('click', () => this.duck());
-                document.getElementById('factBtn').addEventListener('click', () => this.showRandomFact());
-                document.getElementById('menuBtn').addEventListener('click', () => this.togglePause());
+                // Event listeners
+                document.getElementById('startBtn').addEventListener('click', () => this.startGame());
+                document.getElementById('pauseBtn').addEventListener('click', () => this.togglePause());
                 document.getElementById('resumeBtn').addEventListener('click', () => this.togglePause());
                 document.getElementById('restartBtn').addEventListener('click', () => this.restart());
+                document.getElementById('continueBtn').addEventListener('click', () => this.closeStory());
 
-                // Keyboard controls
-                document.addEventListener('keydown', (e) => {
-                    if (this.isGameOver) return;
-
-                    if (e.code === 'Space' || e.code === 'ArrowUp') {
-                        e.preventDefault();
-                        this.jump();
-                    }
-                    if (e.code === 'ArrowDown') {
-                        e.preventDefault();
-                        this.duck();
-                    }
-                    if (e.code === 'KeyP' || e.code === 'Escape') {
-                        this.togglePause();
-                    }
-                    if (e.code === 'KeyF') {
-                        this.showRandomFact();
-                    }
-                });
-
-                // Touch/Swipe controls
-                let touchStartY = 0;
+                // Touch/click on game world to collect supporters
                 const gameWorld = document.getElementById('gameWorld');
-
-                gameWorld.addEventListener('touchstart', (e) => {
-                    touchStartY = e.touches[0].clientY;
-                }, { passive: true });
-
-                gameWorld.addEventListener('touchmove', (e) => {
-                    if (this.isGameOver || this.isPaused) return;
-
-                    const touchY = e.touches[0].clientY;
-                    const deltaY = touchStartY - touchY;
-
-                    if (Math.abs(deltaY) > 50) {
-                        if (deltaY > 0) {
-                            this.jump();
-                        } else {
-                            this.duck();
-                        }
-                        touchStartY = touchY;
-                    }
-                }, { passive: true });
-
-                // Tap to jump
-                gameWorld.addEventListener('click', () => {
-                    if (!this.isGameOver && !this.isPaused) {
-                        this.jump();
+                gameWorld.addEventListener('click', (e) => {
+                    if (!this.isPaused && e.target.classList.contains('supporter')) {
+                        this.collectSupporter(e.target);
                     }
                 });
-
-                // Update high score display
-                document.getElementById('highScore').textContent = this.highScore;
             }
 
             startGame() {
                 document.getElementById('startScreen').style.display = 'none';
-                this.isGameOver = false;
-                this.isPaused = false;
+                this.showStory(0); // Show opening story
                 this.startGameLoop();
                 this.startSpawners();
-
-                // Show welcome fact after 2 seconds
-                setTimeout(() => this.showFact(0), 2000);
-
-                // Vibrate on mobile
-                this.vibrate(50);
             }
 
             startGameLoop() {
                 this.gameInterval = setInterval(() => {
-                    if (!this.isPaused && !this.isGameOver) {
+                    if (!this.isPaused) {
                         this.updateGame();
                     }
-                }, 50);
+                }, 100);
             }
 
             startSpawners() {
-                const settings = this.difficultySettings[this.difficulty];
-
-                // Spawn obstacles
-                this.obstacleSpawner = setInterval(() => {
-                    if (!this.isPaused && !this.isGameOver) {
-                        this.spawnObstacle();
+                // Spawn supporters regularly
+                this.supporterSpawner = setInterval(() => {
+                    if (!this.isPaused) {
+                        this.spawnSupporter();
                     }
-                }, settings.spawnRate);
-
-                // Spawn collectibles
-                this.collectibleSpawner = setInterval(() => {
-                    if (!this.isPaused && !this.isGameOver) {
-                        this.spawnCollectible();
-                    }
-                }, 2000);
+                }, 2500);
 
                 // Spawn landmarks
                 this.landmarkSpawner = setInterval(() => {
-                    if (!this.isPaused && !this.isGameOver) {
+                    if (!this.isPaused) {
                         this.spawnLandmark();
                     }
-                }, 4000);
+                }, 5000);
+
+                // Change weather occasionally
+                this.weatherChanger = setInterval(() => {
+                    if (!this.isPaused) {
+                        this.changeWeather();
+                    }
+                }, 15000);
             }
 
             updateGame() {
-                // Increment distance and score
-                this.distance += 0.1;
-                this.score += Math.floor(1 * this.difficultySettings[this.difficulty].scoreMultiplier);
+                // Progress forward (Terry ran ~42km per day)
+                const baseSpeed = 0.15;
+                const speedModifier = this.currentWeather.speedMultiplier;
+                const determinationModifier = this.determination / 100;
+
+                this.distance += baseSpeed * speedModifier * determinationModifier;
+
+                // Update day (every 42km)
+                this.day = Math.min(Math.floor(this.distance / 42) + 1, 143);
+
+                // Determination naturally decreases
+                this.determination -= 0.02;
+                this.determination = Math.max(0, this.determination);
 
                 // Update UI
                 this.updateUI();
 
-                // Check for level milestones
-                if (Math.floor(this.distance) % 100 === 0 && this.distance % 1 < 0.1) {
-                    this.showAchievement('🎯 Milestone!', `${Math.floor(this.distance)} km completed!`);
-                    this.vibrate(100);
+                // Check for city milestones
+                this.checkCityMilestones();
+
+                // Adjust Terry's appearance based on determination
+                this.updateTerryAppearance();
+
+                // Check for completion
+                if (this.distance >= 5373) {
+                    this.showCompletion();
                 }
             }
 
             updateUI() {
-                document.getElementById('score').textContent = Math.floor(this.score);
-                document.getElementById('coins').textContent = this.coins;
+                document.getElementById('day').textContent = this.day;
                 document.getElementById('distance').textContent = Math.floor(this.distance);
-                document.getElementById('lives').textContent = this.lives;
+                document.getElementById('money').textContent = Math.floor(this.money).toLocaleString();
+                document.getElementById('supporters').textContent = this.supporters;
+
+                // Update determination bar
+                const bar = document.getElementById('determinationBar');
+                bar.style.width = Math.max(0, this.determination) + '%';
+
+                if (this.determination < 30) {
+                    bar.classList.add('low');
+                } else {
+                    bar.classList.remove('low');
+                }
 
                 // Update pause screen stats
-                document.getElementById('pauseScore').textContent = Math.floor(this.score);
-                document.getElementById('pauseCoins').textContent = this.coins;
+                document.getElementById('pauseDay').textContent = this.day;
                 document.getElementById('pauseDistance').textContent = Math.floor(this.distance);
+                document.getElementById('pauseMoney').textContent = Math.floor(this.money).toLocaleString();
+                document.getElementById('pauseSupporters').textContent = this.supporters;
+
+                // Update next city info
+                if (this.currentCityIndex < this.cities.length - 1) {
+                    const nextCity = this.cities[this.currentCityIndex + 1];
+                    document.getElementById('nextCity').textContent = nextCity.name;
+                    document.getElementById('kmToNext').textContent = Math.max(0, Math.floor(nextCity.distance - this.distance));
+                }
             }
 
-            jump() {
-                if (this.isJumping || this.isDucking || this.isGameOver || this.isPaused) return;
-
-                this.isJumping = true;
+            updateTerryAppearance() {
                 const terry = document.getElementById('terry');
-                terry.classList.add('jumping');
+                const road = document.getElementById('road');
 
-                this.vibrate(30);
+                terry.classList.remove('tired', 'determined');
+                road.classList.remove('slow', 'fast');
 
-                setTimeout(() => {
-                    terry.classList.remove('jumping');
-                    this.isJumping = false;
-                }, 600);
+                if (this.determination < 30) {
+                    terry.classList.add('tired');
+                    road.classList.add('slow');
+                } else if (this.determination > 80) {
+                    terry.classList.add('determined');
+                    road.classList.add('fast');
+                }
             }
 
-            duck() {
-                if (this.isDucking || this.isJumping || this.isGameOver || this.isPaused) return;
+            spawnSupporter() {
+                const supporter = document.createElement('div');
+                supporter.className = 'supporter';
 
-                this.isDucking = true;
-                const terry = document.getElementById('terry');
-                terry.classList.add('ducking');
+                const type = this.supporterTypes[Math.floor(Math.random() * this.supporterTypes.length)];
+                supporter.textContent = type.emoji;
+                supporter.dataset.value = type.value;
+                supporter.dataset.name = type.name;
 
-                setTimeout(() => {
-                    terry.classList.remove('ducking');
-                    this.isDucking = false;
-                }, 600);
-            }
+                supporter.style.bottom = Math.random() * 40 + 30 + '%';
 
-            spawnObstacle() {
-                const obstacle = document.createElement('div');
-                obstacle.className = 'obstacle';
-
-                const isLow = Math.random() > 0.5;
-                obstacle.classList.add(isLow ? 'low' : 'high');
-                obstacle.textContent = this.obstacles[Math.floor(Math.random() * this.obstacles.length)];
-
-                const settings = this.difficultySettings[this.difficulty];
-                obstacle.style.animationDuration = settings.obstacleSpeed + 'ms';
-
-                document.getElementById('gameWorld').appendChild(obstacle);
-
-                // Collision detection
-                const checkCollision = setInterval(() => {
-                    if (this.isPaused || this.isGameOver) {
-                        clearInterval(checkCollision);
-                        return;
-                    }
-
-                    const terryRect = document.getElementById('terry').getBoundingClientRect();
-                    const obstacleRect = obstacle.getBoundingClientRect();
-
-                    if (this.checkCollision(terryRect, obstacleRect)) {
-                        if (!this.invincible) {
-                            this.handleHit();
-                        }
-                        clearInterval(checkCollision);
-                        obstacle.remove();
-                    }
-                }, 50);
+                document.getElementById('gameWorld').appendChild(supporter);
 
                 setTimeout(() => {
-                    clearInterval(checkCollision);
-                    if (obstacle.parentNode) {
-                        obstacle.remove();
-                    }
-                }, settings.obstacleSpeed);
-            }
-
-            spawnCollectible() {
-                const collectible = document.createElement('div');
-                collectible.className = 'collectible';
-
-                const item = this.collectibles[Math.floor(Math.random() * this.collectibles.length)];
-                collectible.textContent = item.emoji;
-                collectible.dataset.type = item.type;
-                collectible.dataset.value = item.value;
-
-                collectible.style.bottom = Math.random() * 60 + 20 + '%';
-
-                document.getElementById('gameWorld').appendChild(collectible);
-
-                // Collision detection
-                const checkCollision = setInterval(() => {
-                    if (this.isPaused || this.isGameOver) {
-                        clearInterval(checkCollision);
-                        return;
-                    }
-
-                    const terryRect = document.getElementById('terry').getBoundingClientRect();
-                    const collectibleRect = collectible.getBoundingClientRect();
-
-                    if (this.checkCollision(terryRect, collectibleRect)) {
-                        this.handleCollectible(item);
-                        this.showScorePopup(terryRect.left, terryRect.top, '+' + item.value);
-                        clearInterval(checkCollision);
-                        collectible.remove();
-                    }
-                }, 50);
-
-                setTimeout(() => {
-                    clearInterval(checkCollision);
-                    if (collectible.parentNode) {
-                        collectible.remove();
+                    if (supporter.parentNode) {
+                        supporter.remove();
                     }
                 }, 4000);
             }
 
+            collectSupporter(supporterElement) {
+                const value = parseInt(supporterElement.dataset.value);
+                const name = supporterElement.dataset.name;
+
+                this.money += value;
+                this.supporters++;
+                this.determination = Math.min(100, this.determination + 5); // Boost determination
+
+                // Show donation collect animation
+                const donation = document.createElement('div');
+                donation.className = 'donation-collect';
+                donation.textContent = '+$' + value;
+                donation.style.left = supporterElement.offsetLeft + 'px';
+                donation.style.top = supporterElement.offsetTop + 'px';
+
+                document.getElementById('gameWorld').appendChild(donation);
+
+                setTimeout(() => donation.remove(), 1500);
+
+                // Remove supporter
+                supporterElement.remove();
+
+                // Vibrate
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(30);
+                }
+
+                // Show achievement for milestones
+                if (this.supporters % 50 === 0) {
+                    this.showAchievement(`🎉 ${this.supporters} Supporters!`, `The movement is growing!`);
+                }
+            }
+
             spawnLandmark() {
+                const landmarks = ['🌲', '🏠', '🏭', '⛪', '🌾', '🏔️', '🌊', '🦌', '🐻'];
                 const landmark = document.createElement('div');
                 landmark.className = 'landmark';
-                landmark.textContent = this.landmarks[Math.floor(Math.random() * this.landmarks.length)];
-                landmark.style.top = Math.random() * 40 + 10 + '%';
+                landmark.textContent = landmarks[Math.floor(Math.random() * landmarks.length)];
+                landmark.style.top = Math.random() * 50 + 10 + '%';
 
                 document.getElementById('gameWorld').appendChild(landmark);
 
@@ -1017,256 +1013,156 @@
                     if (landmark.parentNode) {
                         landmark.remove();
                     }
-                }, 8000);
+                }, 6000);
             }
 
-            handleCollectible(item) {
-                this.score += item.value * this.difficultySettings[this.difficulty].scoreMultiplier;
-                this.combo++;
+            changeWeather() {
+                this.currentWeather = this.weatherTypes[Math.floor(Math.random() * this.weatherTypes.length)];
 
-                switch(item.type) {
-                    case 'coin':
-                        this.coins += 10;
-                        break;
-                    case 'star':
-                        this.coins += 50;
-                        this.combo += 5;
-                        break;
-                    case 'heart':
-                        if (this.lives < 5) {
-                            this.lives++;
-                            this.showAchievement('❤️ Life Up!', 'Extra life gained!');
-                        }
-                        break;
-                    case 'speed':
-                        this.activateSpeedBoost();
-                        break;
-                    case 'shield':
-                        this.activateInvincibility();
-                        break;
-                }
+                const overlay = document.getElementById('weatherOverlay');
+                overlay.className = 'weather-overlay ' + this.currentWeather.class + ' active';
 
-                // Update combo counter
-                if (this.combo > 2) {
-                    const comboCounter = document.getElementById('comboCounter');
-                    comboCounter.classList.add('active');
-                    document.getElementById('comboValue').textContent = this.combo;
-                }
-
-                this.vibrate(30);
-            }
-
-            activateInvincibility() {
-                this.invincible = true;
-                document.querySelector('.game-container').classList.add('invincible');
-                this.showAchievement('🛡️ Invincible!', 'You are protected!');
+                document.getElementById('challengeIcon').textContent = this.currentWeather.icon;
+                document.getElementById('challengeMessage').textContent = this.currentWeather.message;
 
                 setTimeout(() => {
-                    this.invincible = false;
-                    document.querySelector('.game-container').classList.remove('invincible');
+                    overlay.classList.remove('active');
                 }, 5000);
             }
 
-            activateSpeedBoost() {
-                this.speedBoost = true;
-                document.querySelector('.game-container').classList.add('speed-boost');
-                document.getElementById('road').classList.add('fast');
-                this.showAchievement('⚡ Speed Boost!', 'Faster scoring!');
-
-                setTimeout(() => {
-                    this.speedBoost = false;
-                    document.querySelector('.game-container').classList.remove('speed-boost');
-                    document.getElementById('road').classList.remove('fast');
-                }, 5000);
-            }
-
-            handleHit() {
-                this.lives--;
-                this.combo = 0;
-                document.getElementById('comboCounter').classList.remove('active');
-
-                const terry = document.getElementById('terry');
-                terry.classList.add('hit');
-
-                setTimeout(() => {
-                    terry.classList.remove('hit');
-                }, 500);
-
-                this.vibrate([100, 50, 100]);
-
-                if (this.lives <= 0) {
-                    this.gameOver();
-                } else {
-                    this.showAchievement('💔 Ouch!', `${this.lives} lives remaining`);
+            checkCityMilestones() {
+                if (this.currentCityIndex < this.cities.length - 1) {
+                    const nextCity = this.cities[this.currentCityIndex + 1];
+                    if (this.distance >= nextCity.distance) {
+                        this.currentCityIndex++;
+                        this.reachCity(this.currentCityIndex);
+                    }
                 }
             }
 
-            checkCollision(rect1, rect2) {
-                // More forgiving collision detection
-                const margin = 15;
-                return !(rect1.right - margin < rect2.left + margin ||
-                         rect1.left + margin > rect2.right - margin ||
-                         rect1.bottom - margin < rect2.top + margin ||
-                         rect1.top + margin > rect2.bottom - margin);
+            reachCity(cityIndex) {
+                this.isPaused = true;
+
+                // Show city sign first
+                const sign = document.createElement('div');
+                sign.className = 'city-sign';
+                sign.textContent = this.cities[cityIndex].icon + ' ' + this.cities[cityIndex].name;
+                sign.style.bottom = '50%';
+                document.getElementById('gameWorld').appendChild(sign);
+
+                setTimeout(() => sign.remove(), 5000);
+
+                // Show story
+                setTimeout(() => this.showStory(cityIndex), 1000);
+
+                // Vibrate
+                if ('vibrate' in navigator) {
+                    navigator.vibrate([100, 50, 100, 50, 100]);
+                }
             }
 
-            showScorePopup(x, y, text) {
-                const popup = document.createElement('div');
-                popup.className = 'score-popup';
-                popup.textContent = text;
-                popup.style.left = x + 'px';
-                popup.style.top = y + 'px';
+            showStory(cityIndex) {
+                const city = this.cities[cityIndex];
+                const modal = document.getElementById('storyModal');
 
-                document.querySelector('.game-container').appendChild(popup);
+                document.getElementById('storyTitle').textContent = cityIndex === 0 ? 'The Journey Begins' : 'Milestone Reached!';
+                document.getElementById('storyLocation').textContent = city.icon + ' ' + city.name;
+                document.getElementById('storyContent').innerHTML = '<p>' + city.story + '</p>';
 
-                setTimeout(() => {
-                    popup.remove();
-                }, 1000);
+                modal.classList.add('active');
+                this.isPaused = true;
+            }
+
+            closeStory() {
+                document.getElementById('storyModal').classList.remove('active');
+                this.isPaused = false;
             }
 
             showAchievement(title, message) {
                 const achievement = document.createElement('div');
                 achievement.className = 'achievement';
                 achievement.innerHTML = `
-                    <h4>${title}</h4>
+                    <h3>${title}</h3>
                     <p>${message}</p>
                 `;
 
                 document.querySelector('.game-container').appendChild(achievement);
 
-                setTimeout(() => {
-                    achievement.remove();
-                }, 3000);
+                setTimeout(() => achievement.remove(), 3000);
             }
 
-            showFact(index = null) {
-                if (document.querySelector('.fact-bubble')) return;
+            showCompletion() {
+                this.isPaused = true;
+                const modal = document.getElementById('storyModal');
 
-                const factIndex = index !== null ? index : Math.floor(Math.random() * this.facts.length);
-                const fact = this.facts[factIndex];
-
-                const bubble = document.createElement('div');
-                bubble.className = 'fact-bubble';
-                bubble.style.top = '50%';
-                bubble.style.left = '50%';
-                bubble.style.transform = 'translate(-50%, -50%)';
-
-                bubble.innerHTML = `
-                    <button class="fact-close" onclick="this.parentNode.remove()">&times;</button>
-                    <h3>${fact.title}</h3>
-                    <p>${fact.text}</p>
+                document.getElementById('storyTitle').textContent = '🏆 Journey Complete';
+                document.getElementById('storyLocation').textContent = '5,373 Kilometers';
+                document.getElementById('storyContent').innerHTML = `
+                    <p>Though Terry's Marathon of Hope ended at Thunder Bay, his legacy continues forever.</p>
+                    <p>You raised <strong>$${Math.floor(this.money).toLocaleString()}</strong> and inspired <strong>${this.supporters}</strong> supporters.</p>
+                    <p>Since 1980, the annual Terry Fox Run has raised over $850 million for cancer research worldwide.</p>
+                    <p><strong>Terry's dream of finding a cure for cancer lives on through millions who continue to run in his name.</strong></p>
                 `;
 
-                document.querySelector('.game-container').appendChild(bubble);
+                document.getElementById('continueBtn').textContent = 'Restart Journey';
+                document.getElementById('continueBtn').onclick = () => this.restart();
 
-                setTimeout(() => {
-                    if (bubble.parentNode) {
-                        bubble.remove();
-                    }
-                }, 8000);
-            }
-
-            showRandomFact() {
-                if (!this.isPaused && !this.isGameOver) {
-                    this.showFact();
-                }
+                modal.classList.add('active');
             }
 
             togglePause() {
-                if (this.isGameOver) return;
+                if (document.getElementById('storyModal').classList.contains('active')) return;
 
                 this.isPaused = !this.isPaused;
                 const pauseScreen = document.getElementById('pauseScreen');
-                pauseScreen.style.display = this.isPaused ? 'flex' : 'none';
-
-                const menuBtn = document.getElementById('menuBtn');
-                menuBtn.textContent = this.isPaused ? '▶️' : '⏸️';
 
                 if (this.isPaused) {
+                    pauseScreen.classList.add('active');
+                    document.getElementById('pauseBtn').textContent = '▶️';
                     this.updateUI();
+                } else {
+                    pauseScreen.classList.remove('active');
+                    document.getElementById('pauseBtn').textContent = '⏸️';
                 }
-            }
-
-            gameOver() {
-                this.isGameOver = true;
-
-                // Update high score
-                if (this.score > this.highScore) {
-                    this.highScore = Math.floor(this.score);
-                    localStorage.setItem('terryFoxHighScore', this.highScore);
-                    document.getElementById('highScore').textContent = this.highScore;
-                }
-
-                // Stop spawners
-                clearInterval(this.gameInterval);
-                clearInterval(this.obstacleSpawner);
-                clearInterval(this.collectibleSpawner);
-                clearInterval(this.landmarkSpawner);
-
-                // Show game over
-                this.showAchievement(
-                    '🏁 Game Over!',
-                    `You ran ${Math.floor(this.distance)} km and scored ${Math.floor(this.score)} points!`
-                );
-
-                this.vibrate([200, 100, 200]);
-
-                setTimeout(() => {
-                    this.togglePause();
-                }, 2000);
             }
 
             restart() {
                 // Clear all spawned elements
-                document.querySelectorAll('.obstacle, .collectible, .landmark, .fact-bubble, .achievement').forEach(el => el.remove());
+                document.querySelectorAll('.supporter, .landmark, .city-sign, .donation-collect, .achievement').forEach(el => el.remove());
 
-                // Reset game state
-                this.score = 0;
-                this.coins = 0;
+                // Reset state
                 this.distance = 0;
-                this.lives = 3;
-                this.combo = 0;
+                this.day = 1;
+                this.money = 0;
+                this.supporters = 0;
+                this.determination = 100;
+                this.currentCityIndex = 0;
                 this.isPaused = false;
-                this.isGameOver = false;
-                this.invincible = false;
-                this.speedBoost = false;
 
                 // Reset UI
-                document.getElementById('pauseScreen').style.display = 'none';
-                document.getElementById('menuBtn').textContent = '⏸️';
-                document.getElementById('comboCounter').classList.remove('active');
-                document.querySelector('.game-container').classList.remove('invincible', 'speed-boost');
-                document.getElementById('road').classList.remove('fast', 'slow');
+                document.getElementById('pauseScreen').classList.remove('active');
+                document.getElementById('storyModal').classList.remove('active');
+                document.getElementById('pauseBtn').textContent = '⏸️';
+                document.getElementById('continueBtn').textContent = 'Continue Running';
+                document.getElementById('continueBtn').onclick = () => this.closeStory();
 
                 this.updateUI();
-
-                // Restart game
-                this.startGameLoop();
-                this.startSpawners();
-
-                this.vibrate(50);
-            }
-
-            vibrate(pattern) {
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(pattern);
-                }
+                this.showStory(0);
             }
         }
 
-        // Start the game when page loads
+        // Start when page loads
         window.addEventListener('load', () => {
-            new TerryFoxGame();
+            new TerryFoxJourney();
         });
 
-        // Prevent pull-to-refresh and other mobile gestures
+        // Prevent mobile gestures
         document.addEventListener('touchmove', (e) => {
             if (e.target.closest('.game-container')) {
                 e.preventDefault();
             }
         }, { passive: false });
 
-        // Prevent double-tap zoom
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (e) => {
             const now = Date.now();
