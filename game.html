@@ -2,28 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Terry Fox: Marathon of Hope Game | Run Across Canada</title>
-    
+
     <!-- SEO Meta Tags -->
     <meta name="description" content="Play the Terry Fox Marathon of Hope game! Guide Terry across Canada while learning about his incredible journey and legacy. Educational running game honoring a Canadian hero.">
     <meta name="keywords" content="Terry Fox game, Marathon of Hope game, educational game, Terry Fox facts, Canadian hero game, running game">
-    <meta name="author" content="Terry Fox Memorial Game">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Terry Fox: Marathon of Hope Game">
-    <meta property="og:description" content="Interactive game honoring Terry Fox's incredible journey across Canada">
-    <meta property="og:type" content="website">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -31,7 +28,10 @@
             background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
             overflow: hidden;
             height: 100vh;
+            width: 100vw;
             user-select: none;
+            position: fixed;
+            touch-action: none;
         }
 
         .game-container {
@@ -47,41 +47,55 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             color: white;
-            padding: 15px 20px;
+            padding: clamp(8px, 2vw, 15px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .game-title {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.5rem);
             font-weight: 700;
         }
 
         .game-stats {
             display: flex;
-            gap: 20px;
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            gap: clamp(8px, 2vw, 20px);
+            font-size: clamp(0.75rem, 2vw, 1rem);
             flex-wrap: wrap;
         }
 
         .stat {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .stat.highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         /* Game World */
         .game-world {
             position: absolute;
-            top: 60px;
+            top: clamp(50px, 15vw, 80px);
             left: 0;
             right: 0;
-            bottom: 0;
+            bottom: clamp(80px, 20vw, 120px);
             background: linear-gradient(180deg, #87CEEB 0%, #90EE90 40%, #228B22 100%);
             overflow: hidden;
         }
@@ -92,12 +106,20 @@
             bottom: 0;
             left: 0;
             width: 200%;
-            height: 150px;
-            background: 
+            height: clamp(100px, 25vh, 200px);
+            background:
                 linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 45%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 55%, transparent 100%),
                 repeating-linear-gradient(90deg, transparent 0px, transparent 40px, rgba(255,255,255,0.6) 40px, rgba(255,255,255,0.6) 60px),
                 #404040;
-            animation: roadScroll 8s linear infinite;
+            animation: roadScroll 4s linear infinite;
+        }
+
+        .road.fast {
+            animation-duration: 2s;
+        }
+
+        .road.slow {
+            animation-duration: 6s;
         }
 
         @keyframes roadScroll {
@@ -108,229 +130,243 @@
         /* Terry Fox Character */
         .terry {
             position: absolute;
-            bottom: 80px;
+            bottom: clamp(60px, 15vh, 120px);
             left: 20%;
-            font-size: 4rem;
+            font-size: clamp(3rem, 10vw, 5rem);
             z-index: 100;
-            transition: all 0.3s ease;
-            animation: runBounce 0.8s ease-in-out infinite;
+            transition: all 0.2s ease;
+            animation: runBounce 0.5s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+        }
+
+        .terry.jumping {
+            animation: jump 0.6s ease-in-out;
+        }
+
+        .terry.ducking {
+            transform: scaleY(0.5) scaleX(-1);
+            animation: none;
+        }
+
+        .terry.hit {
+            animation: shake 0.5s ease-in-out;
+            filter: brightness(0.5) drop-shadow(0 0 20px red);
         }
 
         @keyframes runBounce {
-            0%, 100% { transform: scaleX(-1) translateY(0px) scale(1); }
-            50% { transform: scaleX(-1) translateY(-10px) scale(1.1); }
+            0%, 100% { transform: scaleX(-1) translateY(0px); }
+            50% { transform: scaleX(-1) translateY(-15px); }
         }
 
-        /* Canadian Provinces/Landmarks */
-        .landmark {
+        @keyframes jump {
+            0% { bottom: clamp(60px, 15vh, 120px); }
+            50% { bottom: clamp(150px, 35vh, 280px); }
+            100% { bottom: clamp(60px, 15vh, 120px); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) scaleX(-1); }
+            25% { transform: translateX(-10px) scaleX(-1); }
+            75% { transform: translateX(10px) scaleX(-1); }
+        }
+
+        /* Obstacles */
+        .obstacle {
             position: absolute;
-            font-size: clamp(2rem, 5vw, 4rem);
-            animation: landmarkMove 12s linear infinite;
-            z-index: 50;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            animation: obstacleMove 3s linear;
+            z-index: 90;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
         }
 
-        @keyframes landmarkMove {
-            0% { 
-                transform: translateX(100vw); 
-                opacity: 0; 
+        .obstacle.low {
+            bottom: clamp(60px, 15vh, 120px);
+        }
+
+        .obstacle.high {
+            bottom: clamp(150px, 35vh, 280px);
+        }
+
+        @keyframes obstacleMove {
+            0% {
+                right: -100px;
+                opacity: 0;
             }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { 
-                transform: translateX(-20vw); 
-                opacity: 0; 
+            100% {
+                right: 100vw;
+                opacity: 0;
             }
         }
 
-        /* Fact Bubbles */
-        .fact-bubble {
+        /* Collectibles */
+        .collectible {
             position: absolute;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 20px;
-            max-width: 300px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 200;
-            animation: factAppear 0.5s ease-out;
-            border-left: 5px solid #ff6b6b;
-        }
-
-        @keyframes factAppear {
-            0% { 
-                transform: scale(0.8) translateY(20px); 
-                opacity: 0; 
-            }
-            100% { 
-                transform: scale(1) translateY(0); 
-                opacity: 1; 
-            }
-        }
-
-        .fact-bubble h3 {
-            color: #2c3e50;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .fact-bubble p {
-            color: #5a6c7d;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-
-        .fact-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
+            font-size: clamp(2rem, 6vw, 3rem);
+            animation: collectibleMove 4s linear, collectibleFloat 1s ease-in-out infinite;
+            z-index: 85;
             cursor: pointer;
-            color: #999;
         }
 
-        /* Controls */
-        .controls {
+        @keyframes collectibleMove {
+            0% { right: -100px; }
+            100% { right: 100vw; }
+        }
+
+        @keyframes collectibleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Power-up Effects */
+        .invincible .terry {
+            animation: invincibleGlow 0.3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px gold);
+        }
+
+        @keyframes invincibleGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .speed-boost .road {
+            animation-duration: 1.5s !important;
+        }
+
+        /* Landmarks */
+        .landmark {
             position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            animation: landmarkMove 8s linear;
+            z-index: 50;
+            opacity: 0.7;
+        }
+
+        @keyframes landmarkMove {
+            0% {
+                transform: translateX(100vw) scale(0.5);
+                opacity: 0;
+            }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.7; }
+            100% {
+                transform: translateX(-20vw) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Score Popup */
+        .score-popup {
+            position: absolute;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: scoreFloat 1s ease-out forwards;
+            z-index: 150;
+            pointer-events: none;
+        }
+
+        @keyframes scoreFloat {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Combo Counter */
+        .combo-counter {
+            position: absolute;
+            top: clamp(60px, 18vw, 100px);
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            color: white;
+            padding: clamp(10px, 3vw, 20px);
+            border-radius: 20px;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.5);
+            z-index: 200;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .combo-counter.active {
+            transform: scale(1);
+            animation: comboPulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes comboPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Mobile Controls */
+        .mobile-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: clamp(80px, 20vh, 120px);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
         }
 
         .control-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            font-size: clamp(1.5rem, 5vw, 3rem);
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .control-btn:hover {
-            transform: scale(1.1);
-            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.1s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            touch-action: manipulation;
+            user-select: none;
         }
 
         .control-btn:active {
             transform: scale(0.95);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
-        /* Progress Bar */
-        .progress-container {
-            position: absolute;
-            top: 70px;
-            left: 20px;
-            right: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            overflow: hidden;
-            z-index: 100;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
-            width: 0%;
-            transition: width 0.5s ease;
-            border-radius: 10px;
-        }
-
-        .progress-label {
-            position: absolute;
-            top: 25px;
-            left: 0;
-            font-size: 0.9rem;
-            color: rgba(0, 0, 0, 0.7);
+        .control-label {
+            font-size: clamp(0.6rem, 2vw, 0.9rem);
             font-weight: 600;
+            color: #333;
         }
 
-        /* Weather Effects */
-        .weather {
+        /* Pause/Menu Button */
+        .menu-btn {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 75;
-        }
-
-        .rain {
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="2" height="10" x="10" y="0" fill="rgba(255,255,255,0.6)" rx="1"><animate attributeName="y" values="0;100" dur="1s" repeatCount="indefinite"/></rect><rect width="2" height="8" x="30" y="-20" fill="rgba(255,255,255,0.4)" rx="1"><animate attributeName="y" values="-20;100" dur="1.2s" repeatCount="indefinite"/></rect><rect width="2" height="12" x="50" y="-10" fill="rgba(255,255,255,0.6)" rx="1"><animate attributeName="y" values="-10;100" dur="0.8s" repeatCount="indefinite"/></rect><rect width="2" height="6" x="70" y="-30" fill="rgba(255,255,255,0.3)" rx="1"><animate attributeName="y" values="-30;100" dur="1.5s" repeatCount="indefinite"/></rect><rect width="2" height="9" x="90" y="-5" fill="rgba(255,255,255,0.5)" rx="1"><animate attributeName="y" values="-5;100" dur="1.1s" repeatCount="indefinite"/></rect></svg>') repeat;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        /* Achievement Notifications */
-        .achievement {
-            position: absolute;
-            top: 100px;
-            right: 20px;
-            background: linear-gradient(45deg, #ffd700, #ffed4a);
-            color: #2c3e50;
-            padding: 15px 20px;
-            border-radius: 10px;
+            top: clamp(60px, 18vw, 100px);
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            width: clamp(50px, 12vw, 70px);
+            height: clamp(50px, 12vw, 70px);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: achievementSlide 3s ease-in-out;
-            z-index: 300;
-            max-width: 250px;
-        }
-
-        @keyframes achievementSlide {
-            0% { transform: translateX(100%); opacity: 0; }
-            20%, 80% { transform: translateX(0); opacity: 1; }
-            100% { transform: translateX(100%); opacity: 0; }
-        }
-
-        .achievement h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .achievement p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .game-header {
-                padding: 10px 15px;
-            }
-
-            .game-stats {
-                gap: 10px;
-                font-size: 0.9rem;
-            }
-
-            .terry {
-                font-size: 3rem;
-                left: 15%;
-            }
-
-            .control-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-
-            .fact-bubble {
-                max-width: 250px;
-                padding: 15px;
-                font-size: 0.9rem;
-            }
-
-            .controls {
-                bottom: 10px;
-            }
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Pause Screen */
@@ -340,80 +376,322 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             display: none;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             color: white;
             text-align: center;
+            padding: 20px;
         }
 
         .pause-content h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 8vw, 4rem);
             margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .pause-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+        .pause-stats {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin: 20px 0;
+            line-height: 2;
         }
 
-        .resume-btn {
+        .pause-stats div {
+            margin: 10px 0;
+        }
+
+        .resume-btn, .restart-btn {
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: clamp(12px, 3vw, 20px) clamp(25px, 6vw, 40px);
             border-radius: 25px;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 600;
             cursor: pointer;
             transition: transform 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
-        .resume-btn:hover {
-            transform: scale(1.05);
+        .resume-btn:active, .restart-btn:active {
+            transform: scale(0.95);
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        /* Fact Bubble */
+        .fact-bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: clamp(15px, 4vw, 25px);
+            max-width: min(400px, 90vw);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 300;
+            animation: factAppear 0.5s ease-out;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        @keyframes factAppear {
+            0% {
+                transform: scale(0.8) translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .fact-bubble h3 {
+            color: #2c3e50;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .fact-bubble p {
+            color: #5a6c7d;
+            line-height: 1.5;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+        }
+
+        .fact-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            cursor: pointer;
+            color: #999;
+        }
+
+        /* Achievement Notification */
+        .achievement {
+            position: fixed;
+            top: clamp(100px, 25vw, 150px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #2c3e50;
+            padding: clamp(12px, 3vw, 20px);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            animation: achievementSlide 3s ease-in-out;
+            z-index: 500;
+            max-width: min(350px, 90vw);
+            text-align: center;
+        }
+
+        @keyframes achievementSlide {
+            0% { transform: translateX(-50%) translateY(-150px); opacity: 0; }
+            20%, 80% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(-150px); opacity: 0; }
+        }
+
+        .achievement h4 {
+            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+            margin-bottom: 5px;
+        }
+
+        .achievement p {
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            opacity: 0.8;
+        }
+
+        /* Loading/Start Screen */
+        .start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .start-screen h1 {
+            font-size: clamp(2rem, 10vw, 5rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .start-screen p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: clamp(15px, 4vw, 25px) clamp(35px, 8vw, 60px);
+            border-radius: 30px;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+            animation: startBtnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes startBtnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .start-btn:active {
+            transform: scale(0.95);
+            animation: none;
+        }
+
+        .difficulty-select {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .difficulty-btn {
+            padding: clamp(10px, 2.5vw, 15px) clamp(20px, 5vw, 30px);
+            border-radius: 15px;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-btn.selected {
+            background: white;
+            color: #667eea;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .game-header {
+                font-size: 0.8rem;
+            }
+
+            .game-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            .mobile-controls {
+                height: 60px;
+            }
+
+            .game-world {
+                bottom: 60px;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
     <div class="game-container">
+        <!-- Start Screen -->
+        <div class="start-screen" id="startScreen">
+            <h1>🏃 Terry Fox 🏃</h1>
+            <p>Marathon of Hope</p>
+            <p style="font-size: clamp(0.85rem, 2.5vw, 1.1rem); opacity: 0.9;">Dodge obstacles, collect coins, and run across Canada! Swipe or use buttons to jump and duck.</p>
+
+            <div class="difficulty-select">
+                <button class="difficulty-btn selected" data-difficulty="easy">Easy</button>
+                <button class="difficulty-btn" data-difficulty="normal">Normal</button>
+                <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+            </div>
+
+            <button class="start-btn" id="startBtn">START RUNNING!</button>
+        </div>
+
         <!-- Game Header -->
         <div class="game-header">
-            <div class="game-title">Terry Fox: Marathon of Hope</div>
+            <div class="game-title">Terry's Marathon of Hope</div>
             <div class="game-stats">
-                <div class="stat">📍 <span id="location">St. John's, NL</span></div>
-                <div class="stat">🏃 <span id="distance">0</span> km</div>
-                <div class="stat">📅 Day <span id="day">1</span></div>
-                <div class="stat">💰 $<span id="money">0</span></div>
+                <div class="stat">💯 <span id="score">0</span></div>
+                <div class="stat">💰 <span id="coins">0</span></div>
+                <div class="stat">📍 <span id="distance">0</span>km</div>
+                <div class="stat">❤️ <span id="lives">3</span></div>
             </div>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-            <div class="progress-label">Journey Across Canada: <span id="progressText">0%</span></div>
+        <!-- Combo Counter -->
+        <div class="combo-counter" id="comboCounter">
+            🔥 COMBO x<span id="comboValue">0</span>
         </div>
+
+        <!-- Menu Button -->
+        <button class="menu-btn" id="menuBtn">⏸️</button>
 
         <!-- Game World -->
-        <div class="game-world">
-            <div class="road"></div>
+        <div class="game-world" id="gameWorld">
+            <div class="road" id="road"></div>
             <div class="terry" id="terry">🏃‍♂️</div>
-            <div class="weather" id="weather"></div>
         </div>
 
-        <!-- Controls -->
-        <div class="controls">
-            <button class="control-btn" id="pauseBtn" title="Pause Game">⏸️</button>
-            <button class="control-btn" id="speedBtn" title="Change Speed">🏃</button>
-            <button class="control-btn" id="factBtn" title="Show Random Fact">💡</button>
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <button class="control-btn" id="jumpBtn">
+                <div>⬆️</div>
+                <div class="control-label">JUMP</div>
+            </button>
+            <button class="control-btn" id="factBtn">
+                <div>💡</div>
+                <div class="control-label">FACT</div>
+            </button>
+            <button class="control-btn" id="duckBtn">
+                <div>⬇️</div>
+                <div class="control-label">DUCK</div>
+            </button>
         </div>
 
         <!-- Pause Screen -->
         <div class="pause-screen" id="pauseScreen">
             <div class="pause-content">
-                <h2>Game Paused</h2>
-                <p>Terry's taking a well-deserved rest!</p>
-                <button class="resume-btn" id="resumeBtn">Continue Journey</button>
+                <h2>⏸️ Paused</h2>
+                <div class="pause-stats">
+                    <div>💯 Score: <strong id="pauseScore">0</strong></div>
+                    <div>💰 Coins: <strong id="pauseCoins">0</strong></div>
+                    <div>📍 Distance: <strong id="pauseDistance">0</strong> km</div>
+                    <div>🏆 High Score: <strong id="highScore">0</strong></div>
+                </div>
+                <button class="resume-btn" id="resumeBtn">CONTINUE</button>
+                <button class="restart-btn" id="restartBtn">RESTART</button>
             </div>
         </div>
     </div>
@@ -421,95 +699,89 @@
     <script>
         class TerryFoxGame {
             constructor() {
+                this.score = 0;
+                this.coins = 0;
                 this.distance = 0;
-                this.day = 1;
-                this.money = 0;
-                this.speed = 1;
+                this.lives = 3;
+                this.combo = 0;
                 this.isPaused = false;
-                this.currentLocation = "St. John's, NL";
-                this.factIndex = 0;
-                
-                this.landmarks = [
-                    { name: "St. John's, NL", icon: "🏠", distance: 0 },
-                    { name: "Halifax, NS", icon: "⚓", distance: 500 },
-                    { name: "Fredericton, NB", icon: "🌲", distance: 800 },
-                    { name: "Quebec City, QC", icon: "🏰", distance: 1200 },
-                    { name: "Montreal, QC", icon: "🌉", distance: 1400 },
-                    { name: "Ottawa, ON", icon: "🏛️", distance: 1600 },
-                    { name: "Toronto, ON", icon: "🏗️", distance: 1800 },
-                    { name: "Thunder Bay, ON", icon: "⚡", distance: 2300 },
-                    { name: "Winnipeg, MB", icon: "🌾", distance: 2800 },
-                    { name: "Regina, SK", icon: "🌻", distance: 3300 },
-                    { name: "Calgary, AB", icon: "🏔️", distance: 3800 },
-                    { name: "Vancouver, BC", icon: "🌊", distance: 5373 }
+                this.isGameOver = false;
+                this.isJumping = false;
+                this.isDucking = false;
+                this.difficulty = 'easy';
+                this.invincible = false;
+                this.speedBoost = false;
+                this.highScore = localStorage.getItem('terryFoxHighScore') || 0;
+
+                this.difficultySettings = {
+                    easy: { obstacleSpeed: 3500, spawnRate: 2500, scoreMultiplier: 1 },
+                    normal: { obstacleSpeed: 2500, spawnRate: 1800, scoreMultiplier: 1.5 },
+                    hard: { obstacleSpeed: 1800, spawnRate: 1200, scoreMultiplier: 2 }
+                };
+
+                this.obstacles = ['🪨', '🌲', '🚧', '⛰️', '🦌'];
+                this.collectibles = [
+                    { emoji: '💰', value: 10, type: 'coin' },
+                    { emoji: '⭐', value: 50, type: 'star' },
+                    { emoji: '❤️', value: 0, type: 'heart' },
+                    { emoji: '⚡', value: 20, type: 'speed' },
+                    { emoji: '🛡️', value: 30, type: 'shield' }
                 ];
 
                 this.facts = [
-                    {
-                        title: "Terry's Beginning",
-                        text: "Terry Fox was born July 28, 1958, in Winnipeg, Manitoba. He moved to British Columbia with his family when he was young."
-                    },
-                    {
-                        title: "Cancer Diagnosis", 
-                        text: "At age 18, Terry was diagnosed with osteogenic sarcoma (bone cancer) and had his right leg amputated 15 cm above the knee in 1977."
-                    },
-                    {
-                        title: "The Inspiration",
-                        text: "While in the hospital, Terry read about Dick Traum, a one-legged runner who completed the New York City Marathon. This inspired Terry's dream."
-                    },
-                    {
-                        title: "Training",
-                        text: "Terry trained for 14 months before beginning his Marathon of Hope, running over 5,000 kilometres to prepare for his cross-country journey."
-                    },
-                    {
-                        title: "The Start",
-                        text: "On April 12, 1980, Terry dipped his artificial leg in the Atlantic Ocean at St. John's, Newfoundland, and began his Marathon of Hope."
-                    },
-                    {
-                        title: "Daily Marathon",
-                        text: "Terry ran the equivalent of a marathon (42 km) every single day for 143 consecutive days, regardless of weather conditions."
-                    },
-                    {
-                        title: "Media Attention",
-                        text: "Initially, Terry ran with little fanfare, but as he progressed across Canada, media attention grew and crowds became larger."
-                    },
-                    {
-                        title: "Fundraising Goal",
-                        text: "Terry's original goal was to raise $1 for every Canadian - about 24 million people at the time. He far exceeded this goal."
-                    },
-                    {
-                        title: "The Stop",
-                        text: "On September 1, 1980, after 143 days and 5,373 km, Terry was forced to stop outside Thunder Bay, Ontario, when his cancer returned."
-                    },
-                    {
-                        title: "Legacy",
-                        text: "Terry passed away on June 28, 1981, but his legacy lives on. The annual Terry Fox Run has raised over $850 million for cancer research worldwide."
-                    },
-                    {
-                        title: "Recognition",
-                        text: "Terry became the youngest person ever named a Companion of the Order of Canada and has been voted the greatest Canadian hero in numerous polls."
-                    },
-                    {
-                        title: "Global Impact",
-                        text: "Today, Terry Fox Runs take place in over 60 countries worldwide, with millions of participants continuing his mission to find a cure for cancer."
-                    }
+                    { title: "Terry's Beginning", text: "Terry Fox was born July 28, 1958, in Winnipeg, Manitoba. He moved to British Columbia with his family when he was young." },
+                    { title: "Cancer Diagnosis", text: "At age 18, Terry was diagnosed with osteogenic sarcoma (bone cancer) and had his right leg amputated 15 cm above the knee in 1977." },
+                    { title: "The Inspiration", text: "While in the hospital, Terry read about Dick Traum, a one-legged runner who completed the New York City Marathon. This inspired Terry's dream." },
+                    { title: "Training", text: "Terry trained for 14 months before beginning his Marathon of Hope, running over 5,000 kilometres to prepare for his cross-country journey." },
+                    { title: "The Start", text: "On April 12, 1980, Terry dipped his artificial leg in the Atlantic Ocean at St. John's, Newfoundland, and began his Marathon of Hope." },
+                    { title: "Daily Marathon", text: "Terry ran the equivalent of a marathon (42 km) every single day for 143 consecutive days, regardless of weather conditions." },
+                    { title: "Fundraising Goal", text: "Terry's original goal was to raise $1 for every Canadian - about 24 million people at the time. He far exceeded this goal." },
+                    { title: "The Stop", text: "On September 1, 1980, after 143 days and 5,373 km, Terry was forced to stop outside Thunder Bay, Ontario, when his cancer returned." },
+                    { title: "Legacy", text: "Terry passed away on June 28, 1981, but his legacy lives on. The annual Terry Fox Run has raised over $850 million for cancer research worldwide." },
+                    { title: "Global Impact", text: "Today, Terry Fox Runs take place in over 60 countries worldwide, with millions of participants continuing his mission to find a cure for cancer." }
                 ];
 
+                this.landmarks = ['🏠', '⚓', '🌲', '🏰', '🌉', '🏛️', '🏗️', '⚡', '🌾', '🌻', '🏔️', '🌊'];
+
                 this.initializeGame();
-                this.startGameLoop();
             }
 
             initializeGame() {
-                // Event listeners
-                document.getElementById('pauseBtn').addEventListener('click', () => this.togglePause());
-                document.getElementById('resumeBtn').addEventListener('click', () => this.togglePause());
-                document.getElementById('speedBtn').addEventListener('click', () => this.changeSpeed());
+                // Difficulty selection
+                document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('selected'));
+                        e.target.classList.add('selected');
+                        this.difficulty = e.target.dataset.difficulty;
+                    });
+                });
+
+                // Start button
+                document.getElementById('startBtn').addEventListener('click', () => {
+                    this.startGame();
+                });
+
+                // Control buttons
+                document.getElementById('jumpBtn').addEventListener('click', () => this.jump());
+                document.getElementById('duckBtn').addEventListener('click', () => this.duck());
                 document.getElementById('factBtn').addEventListener('click', () => this.showRandomFact());
+                document.getElementById('menuBtn').addEventListener('click', () => this.togglePause());
+                document.getElementById('resumeBtn').addEventListener('click', () => this.togglePause());
+                document.getElementById('restartBtn').addEventListener('click', () => this.restart());
 
                 // Keyboard controls
                 document.addEventListener('keydown', (e) => {
-                    if (e.code === 'Space') {
+                    if (this.isGameOver) return;
+
+                    if (e.code === 'Space' || e.code === 'ArrowUp') {
                         e.preventDefault();
+                        this.jump();
+                    }
+                    if (e.code === 'ArrowDown') {
+                        e.preventDefault();
+                        this.duck();
+                    }
+                    if (e.code === 'KeyP' || e.code === 'Escape') {
                         this.togglePause();
                     }
                     if (e.code === 'KeyF') {
@@ -517,122 +789,376 @@
                     }
                 });
 
-                // Start spawning landmarks
-                this.spawnLandmarks();
-                
-                // Show welcome fact
+                // Touch/Swipe controls
+                let touchStartY = 0;
+                const gameWorld = document.getElementById('gameWorld');
+
+                gameWorld.addEventListener('touchstart', (e) => {
+                    touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+
+                gameWorld.addEventListener('touchmove', (e) => {
+                    if (this.isGameOver || this.isPaused) return;
+
+                    const touchY = e.touches[0].clientY;
+                    const deltaY = touchStartY - touchY;
+
+                    if (Math.abs(deltaY) > 50) {
+                        if (deltaY > 0) {
+                            this.jump();
+                        } else {
+                            this.duck();
+                        }
+                        touchStartY = touchY;
+                    }
+                }, { passive: true });
+
+                // Tap to jump
+                gameWorld.addEventListener('click', () => {
+                    if (!this.isGameOver && !this.isPaused) {
+                        this.jump();
+                    }
+                });
+
+                // Update high score display
+                document.getElementById('highScore').textContent = this.highScore;
+            }
+
+            startGame() {
+                document.getElementById('startScreen').style.display = 'none';
+                this.isGameOver = false;
+                this.isPaused = false;
+                this.startGameLoop();
+                this.startSpawners();
+
+                // Show welcome fact after 2 seconds
                 setTimeout(() => this.showFact(0), 2000);
+
+                // Vibrate on mobile
+                this.vibrate(50);
             }
 
             startGameLoop() {
-                setInterval(() => {
-                    if (!this.isPaused) {
+                this.gameInterval = setInterval(() => {
+                    if (!this.isPaused && !this.isGameOver) {
                         this.updateGame();
                     }
-                }, 100);
+                }, 50);
+            }
+
+            startSpawners() {
+                const settings = this.difficultySettings[this.difficulty];
+
+                // Spawn obstacles
+                this.obstacleSpawner = setInterval(() => {
+                    if (!this.isPaused && !this.isGameOver) {
+                        this.spawnObstacle();
+                    }
+                }, settings.spawnRate);
+
+                // Spawn collectibles
+                this.collectibleSpawner = setInterval(() => {
+                    if (!this.isPaused && !this.isGameOver) {
+                        this.spawnCollectible();
+                    }
+                }, 2000);
+
+                // Spawn landmarks
+                this.landmarkSpawner = setInterval(() => {
+                    if (!this.isPaused && !this.isGameOver) {
+                        this.spawnLandmark();
+                    }
+                }, 4000);
             }
 
             updateGame() {
-                // Update distance (Terry ran about 42km per day)
-                this.distance += 0.5 * this.speed;
-                this.money += Math.floor(Math.random() * 10) * this.speed;
-                
-                // Update day (approximately every 42km)
-                this.day = Math.floor(this.distance / 42) + 1;
-                
-                // Update location based on distance
-                this.updateLocation();
-                
+                // Increment distance and score
+                this.distance += 0.1;
+                this.score += Math.floor(1 * this.difficultySettings[this.difficulty].scoreMultiplier);
+
                 // Update UI
                 this.updateUI();
-                
-                // Random fact trigger
-                if (Math.random() < 0.002 * this.speed) {
-                    this.showRandomFact();
-                }
-                
-                // Achievement triggers
-                this.checkAchievements();
-                
-                // Random weather
-                if (Math.random() < 0.001) {
-                    this.triggerWeather();
-                }
-            }
 
-            updateLocation() {
-                for (let i = this.landmarks.length - 1; i >= 0; i--) {
-                    if (this.distance >= this.landmarks[i].distance) {
-                        if (this.currentLocation !== this.landmarks[i].name) {
-                            this.currentLocation = this.landmarks[i].name;
-                            this.showLocationAchievement(this.landmarks[i]);
-                        }
-                        break;
-                    }
+                // Check for level milestones
+                if (Math.floor(this.distance) % 100 === 0 && this.distance % 1 < 0.1) {
+                    this.showAchievement('🎯 Milestone!', `${Math.floor(this.distance)} km completed!`);
+                    this.vibrate(100);
                 }
             }
 
             updateUI() {
+                document.getElementById('score').textContent = Math.floor(this.score);
+                document.getElementById('coins').textContent = this.coins;
                 document.getElementById('distance').textContent = Math.floor(this.distance);
-                document.getElementById('day').textContent = this.day;
-                document.getElementById('money').textContent = Math.floor(this.money);
-                document.getElementById('location').textContent = this.currentLocation;
-                
-                // Update progress bar
-                const progress = Math.min((this.distance / 5373) * 100, 100);
-                document.getElementById('progressBar').style.width = progress + '%';
-                document.getElementById('progressText').textContent = Math.floor(progress) + '%';
-                
-                // Victory condition
-                if (this.distance >= 5373) {
-                    this.showVictory();
+                document.getElementById('lives').textContent = this.lives;
+
+                // Update pause screen stats
+                document.getElementById('pauseScore').textContent = Math.floor(this.score);
+                document.getElementById('pauseCoins').textContent = this.coins;
+                document.getElementById('pauseDistance').textContent = Math.floor(this.distance);
+            }
+
+            jump() {
+                if (this.isJumping || this.isDucking || this.isGameOver || this.isPaused) return;
+
+                this.isJumping = true;
+                const terry = document.getElementById('terry');
+                terry.classList.add('jumping');
+
+                this.vibrate(30);
+
+                setTimeout(() => {
+                    terry.classList.remove('jumping');
+                    this.isJumping = false;
+                }, 600);
+            }
+
+            duck() {
+                if (this.isDucking || this.isJumping || this.isGameOver || this.isPaused) return;
+
+                this.isDucking = true;
+                const terry = document.getElementById('terry');
+                terry.classList.add('ducking');
+
+                setTimeout(() => {
+                    terry.classList.remove('ducking');
+                    this.isDucking = false;
+                }, 600);
+            }
+
+            spawnObstacle() {
+                const obstacle = document.createElement('div');
+                obstacle.className = 'obstacle';
+
+                const isLow = Math.random() > 0.5;
+                obstacle.classList.add(isLow ? 'low' : 'high');
+                obstacle.textContent = this.obstacles[Math.floor(Math.random() * this.obstacles.length)];
+
+                const settings = this.difficultySettings[this.difficulty];
+                obstacle.style.animationDuration = settings.obstacleSpeed + 'ms';
+
+                document.getElementById('gameWorld').appendChild(obstacle);
+
+                // Collision detection
+                const checkCollision = setInterval(() => {
+                    if (this.isPaused || this.isGameOver) {
+                        clearInterval(checkCollision);
+                        return;
+                    }
+
+                    const terryRect = document.getElementById('terry').getBoundingClientRect();
+                    const obstacleRect = obstacle.getBoundingClientRect();
+
+                    if (this.checkCollision(terryRect, obstacleRect)) {
+                        if (!this.invincible) {
+                            this.handleHit();
+                        }
+                        clearInterval(checkCollision);
+                        obstacle.remove();
+                    }
+                }, 50);
+
+                setTimeout(() => {
+                    clearInterval(checkCollision);
+                    if (obstacle.parentNode) {
+                        obstacle.remove();
+                    }
+                }, settings.obstacleSpeed);
+            }
+
+            spawnCollectible() {
+                const collectible = document.createElement('div');
+                collectible.className = 'collectible';
+
+                const item = this.collectibles[Math.floor(Math.random() * this.collectibles.length)];
+                collectible.textContent = item.emoji;
+                collectible.dataset.type = item.type;
+                collectible.dataset.value = item.value;
+
+                collectible.style.bottom = Math.random() * 60 + 20 + '%';
+
+                document.getElementById('gameWorld').appendChild(collectible);
+
+                // Collision detection
+                const checkCollision = setInterval(() => {
+                    if (this.isPaused || this.isGameOver) {
+                        clearInterval(checkCollision);
+                        return;
+                    }
+
+                    const terryRect = document.getElementById('terry').getBoundingClientRect();
+                    const collectibleRect = collectible.getBoundingClientRect();
+
+                    if (this.checkCollision(terryRect, collectibleRect)) {
+                        this.handleCollectible(item);
+                        this.showScorePopup(terryRect.left, terryRect.top, '+' + item.value);
+                        clearInterval(checkCollision);
+                        collectible.remove();
+                    }
+                }, 50);
+
+                setTimeout(() => {
+                    clearInterval(checkCollision);
+                    if (collectible.parentNode) {
+                        collectible.remove();
+                    }
+                }, 4000);
+            }
+
+            spawnLandmark() {
+                const landmark = document.createElement('div');
+                landmark.className = 'landmark';
+                landmark.textContent = this.landmarks[Math.floor(Math.random() * this.landmarks.length)];
+                landmark.style.top = Math.random() * 40 + 10 + '%';
+
+                document.getElementById('gameWorld').appendChild(landmark);
+
+                setTimeout(() => {
+                    if (landmark.parentNode) {
+                        landmark.remove();
+                    }
+                }, 8000);
+            }
+
+            handleCollectible(item) {
+                this.score += item.value * this.difficultySettings[this.difficulty].scoreMultiplier;
+                this.combo++;
+
+                switch(item.type) {
+                    case 'coin':
+                        this.coins += 10;
+                        break;
+                    case 'star':
+                        this.coins += 50;
+                        this.combo += 5;
+                        break;
+                    case 'heart':
+                        if (this.lives < 5) {
+                            this.lives++;
+                            this.showAchievement('❤️ Life Up!', 'Extra life gained!');
+                        }
+                        break;
+                    case 'speed':
+                        this.activateSpeedBoost();
+                        break;
+                    case 'shield':
+                        this.activateInvincibility();
+                        break;
+                }
+
+                // Update combo counter
+                if (this.combo > 2) {
+                    const comboCounter = document.getElementById('comboCounter');
+                    comboCounter.classList.add('active');
+                    document.getElementById('comboValue').textContent = this.combo;
+                }
+
+                this.vibrate(30);
+            }
+
+            activateInvincibility() {
+                this.invincible = true;
+                document.querySelector('.game-container').classList.add('invincible');
+                this.showAchievement('🛡️ Invincible!', 'You are protected!');
+
+                setTimeout(() => {
+                    this.invincible = false;
+                    document.querySelector('.game-container').classList.remove('invincible');
+                }, 5000);
+            }
+
+            activateSpeedBoost() {
+                this.speedBoost = true;
+                document.querySelector('.game-container').classList.add('speed-boost');
+                document.getElementById('road').classList.add('fast');
+                this.showAchievement('⚡ Speed Boost!', 'Faster scoring!');
+
+                setTimeout(() => {
+                    this.speedBoost = false;
+                    document.querySelector('.game-container').classList.remove('speed-boost');
+                    document.getElementById('road').classList.remove('fast');
+                }, 5000);
+            }
+
+            handleHit() {
+                this.lives--;
+                this.combo = 0;
+                document.getElementById('comboCounter').classList.remove('active');
+
+                const terry = document.getElementById('terry');
+                terry.classList.add('hit');
+
+                setTimeout(() => {
+                    terry.classList.remove('hit');
+                }, 500);
+
+                this.vibrate([100, 50, 100]);
+
+                if (this.lives <= 0) {
+                    this.gameOver();
+                } else {
+                    this.showAchievement('💔 Ouch!', `${this.lives} lives remaining`);
                 }
             }
 
-            spawnLandmarks() {
-                setInterval(() => {
-                    if (!this.isPaused && Math.random() < 0.3) {
-                        this.createLandmark();
-                    }
-                }, 3000);
+            checkCollision(rect1, rect2) {
+                // More forgiving collision detection
+                const margin = 15;
+                return !(rect1.right - margin < rect2.left + margin ||
+                         rect1.left + margin > rect2.right - margin ||
+                         rect1.bottom - margin < rect2.top + margin ||
+                         rect1.top + margin > rect2.bottom - margin);
             }
 
-            createLandmark() {
-                const landmark = document.createElement('div');
-                landmark.className = 'landmark';
-                
-                const landmarks = ['🏔️', '🌲', '🏠', '🌾', '🌊', '⛪', '🏭', '🌉', '🗻'];
-                landmark.textContent = landmarks[Math.floor(Math.random() * landmarks.length)];
-                landmark.style.top = Math.random() * 40 + 20 + '%';
-                
-                document.querySelector('.game-world').appendChild(landmark);
-                
+            showScorePopup(x, y, text) {
+                const popup = document.createElement('div');
+                popup.className = 'score-popup';
+                popup.textContent = text;
+                popup.style.left = x + 'px';
+                popup.style.top = y + 'px';
+
+                document.querySelector('.game-container').appendChild(popup);
+
                 setTimeout(() => {
-                    if (landmark.parentNode) {
-                        landmark.parentNode.removeChild(landmark);
-                    }
-                }, 12000);
+                    popup.remove();
+                }, 1000);
+            }
+
+            showAchievement(title, message) {
+                const achievement = document.createElement('div');
+                achievement.className = 'achievement';
+                achievement.innerHTML = `
+                    <h4>${title}</h4>
+                    <p>${message}</p>
+                `;
+
+                document.querySelector('.game-container').appendChild(achievement);
+
+                setTimeout(() => {
+                    achievement.remove();
+                }, 3000);
             }
 
             showFact(index = null) {
                 if (document.querySelector('.fact-bubble')) return;
-                
+
                 const factIndex = index !== null ? index : Math.floor(Math.random() * this.facts.length);
                 const fact = this.facts[factIndex];
-                
+
                 const bubble = document.createElement('div');
                 bubble.className = 'fact-bubble';
-                bubble.style.top = Math.random() * 200 + 150 + 'px';
-                bubble.style.left = Math.random() * (window.innerWidth - 320) + 'px';
-                
+                bubble.style.top = '50%';
+                bubble.style.left = '50%';
+                bubble.style.transform = 'translate(-50%, -50%)';
+
                 bubble.innerHTML = `
                     <button class="fact-close" onclick="this.parentNode.remove()">&times;</button>
                     <h3>${fact.title}</h3>
                     <p>${fact.text}</p>
                 `;
-                
+
                 document.querySelector('.game-container').appendChild(bubble);
-                
+
                 setTimeout(() => {
                     if (bubble.parentNode) {
                         bubble.remove();
@@ -641,100 +1167,90 @@
             }
 
             showRandomFact() {
-                this.showFact();
-            }
-
-            showLocationAchievement(landmark) {
-                const achievement = document.createElement('div');
-                achievement.className = 'achievement';
-                achievement.innerHTML = `
-                    <h4>${landmark.icon} Reached ${landmark.name}!</h4>
-                    <p>Terry continues his incredible journey across Canada</p>
-                `;
-                
-                document.querySelector('.game-container').appendChild(achievement);
-                
-                setTimeout(() => {
-                    if (achievement.parentNode) {
-                        achievement.remove();
-                    }
-                }, 3000);
-            }
-
-            checkAchievements() {
-                const milestones = [100, 500, 1000, 2000, 3000, 4000, 5000];
-                const currentMilestone = Math.floor(this.distance / 100) * 100;
-                
-                if (milestones.includes(currentMilestone) && !this[`milestone_${currentMilestone}`]) {
-                    this[`milestone_${currentMilestone}`] = true;
-                    
-                    const achievement = document.createElement('div');
-                    achievement.className = 'achievement';
-                    achievement.innerHTML = `
-                        <h4>🎯 ${currentMilestone} km Milestone!</h4>
-                        <p>Terry's determination inspires millions</p>
-                    `;
-                    
-                    document.querySelector('.game-container').appendChild(achievement);
-                    
-                    setTimeout(() => {
-                        if (achievement.parentNode) {
-                            achievement.remove();
-                        }
-                    }, 3000);
+                if (!this.isPaused && !this.isGameOver) {
+                    this.showFact();
                 }
             }
 
-            triggerWeather() {
-                const weather = document.getElementById('weather');
-                weather.innerHTML = '<div class="rain"></div>';
-                weather.style.opacity = '1';
-                
-                setTimeout(() => {
-                    weather.style.opacity = '0';
-                    setTimeout(() => {
-                        weather.innerHTML = '';
-                    }, 500);
-                }, 5000);
-            }
-
             togglePause() {
+                if (this.isGameOver) return;
+
                 this.isPaused = !this.isPaused;
                 const pauseScreen = document.getElementById('pauseScreen');
                 pauseScreen.style.display = this.isPaused ? 'flex' : 'none';
-                
-                const terry = document.getElementById('terry');
-                terry.style.animationPlayState = this.isPaused ? 'paused' : 'running';
+
+                const menuBtn = document.getElementById('menuBtn');
+                menuBtn.textContent = this.isPaused ? '▶️' : '⏸️';
+
+                if (this.isPaused) {
+                    this.updateUI();
+                }
             }
 
-            changeSpeed() {
-                this.speed = this.speed === 1 ? 2 : this.speed === 2 ? 3 : 1;
-                const speedBtn = document.getElementById('speedBtn');
-                const speedEmojis = ['🏃', '🏃‍♂️💨', '🏃‍♂️⚡'];
-                speedBtn.textContent = speedEmojis[this.speed - 1];
-                
-                // Update Terry's animation speed
-                const terry = document.getElementById('terry');
-                terry.style.animationDuration = (0.8 / this.speed) + 's';
+            gameOver() {
+                this.isGameOver = true;
+
+                // Update high score
+                if (this.score > this.highScore) {
+                    this.highScore = Math.floor(this.score);
+                    localStorage.setItem('terryFoxHighScore', this.highScore);
+                    document.getElementById('highScore').textContent = this.highScore;
+                }
+
+                // Stop spawners
+                clearInterval(this.gameInterval);
+                clearInterval(this.obstacleSpawner);
+                clearInterval(this.collectibleSpawner);
+                clearInterval(this.landmarkSpawner);
+
+                // Show game over
+                this.showAchievement(
+                    '🏁 Game Over!',
+                    `You ran ${Math.floor(this.distance)} km and scored ${Math.floor(this.score)} points!`
+                );
+
+                this.vibrate([200, 100, 200]);
+
+                setTimeout(() => {
+                    this.togglePause();
+                }, 2000);
             }
 
-            showVictory() {
-                this.isPaused = true;
-                const achievement = document.createElement('div');
-                achievement.className = 'achievement';
-                achievement.style.position = 'fixed';
-                achievement.style.top = '50%';
-                achievement.style.left = '50%';
-                achievement.style.transform = 'translate(-50%, -50%)';
-                achievement.style.fontSize = '1.5rem';
-                achievement.style.padding = '30px';
-                achievement.style.maxWidth = '500px';
-                achievement.innerHTML = `
-                    <h4>🏆 Journey Complete!</h4>
-                    <p>You've completed Terry's incredible 5,373 km Marathon of Hope! Though Terry's journey was cut short by cancer's return, his legacy continues to inspire millions worldwide. Thank you for honoring his memory.</p>
-                `;
-                
-                document.querySelector('.game-container').appendChild(achievement);
+            restart() {
+                // Clear all spawned elements
+                document.querySelectorAll('.obstacle, .collectible, .landmark, .fact-bubble, .achievement').forEach(el => el.remove());
+
+                // Reset game state
+                this.score = 0;
+                this.coins = 0;
+                this.distance = 0;
+                this.lives = 3;
+                this.combo = 0;
+                this.isPaused = false;
+                this.isGameOver = false;
+                this.invincible = false;
+                this.speedBoost = false;
+
+                // Reset UI
+                document.getElementById('pauseScreen').style.display = 'none';
+                document.getElementById('menuBtn').textContent = '⏸️';
+                document.getElementById('comboCounter').classList.remove('active');
+                document.querySelector('.game-container').classList.remove('invincible', 'speed-boost');
+                document.getElementById('road').classList.remove('fast', 'slow');
+
+                this.updateUI();
+
+                // Restart game
+                this.startGameLoop();
+                this.startSpawners();
+
+                this.vibrate(50);
+            }
+
+            vibrate(pattern) {
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(pattern);
+                }
             }
         }
 
@@ -742,6 +1258,23 @@
         window.addEventListener('load', () => {
             new TerryFoxGame();
         });
+
+        // Prevent pull-to-refresh and other mobile gestures
+        document.addEventListener('touchmove', (e) => {
+            if (e.target.closest('.game-container')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent double-tap zoom
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
