@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.terrancestanleyfox.com/</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.terrancestanleyfox.com/og-image.svg</image:loc>
+      <image:title>Terry Fox Marathon of Hope - Interactive Game</image:title>
+      <image:caption>Experience Terry Fox's legendary 5,373km journey across Canada</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Terry Fox Facts & FAQs -->
+  <url>
+    <loc>https://www.terrancestanleyfox.com/facts.html</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.terrancestanleyfox.com/og-image.svg</image:loc>
+      <image:title>Terry Fox Facts - Questions and Answers</image:title>
+      <image:caption>Complete facts about Terry Fox: when he died, where he ran, his legacy</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Terry Fox Biography -->
+  <url>
+    <loc>https://www.terrancestanleyfox.com/story.html</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.terrancestanleyfox.com/og-image.svg</image:loc>
+      <image:title>Terry Fox Biography - Complete Life Story</image:title>
+      <image:caption>The inspiring story of Terrance Stanley Fox from birth to legacy</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Marathon of Hope Game -->
+  <url>
+    <loc>https://www.terrancestanleyfox.com/game.html</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.terrancestanleyfox.com/og-image.svg</image:loc>
+      <image:title>Terry Fox Marathon of Hope Game</image:title>
+      <image:caption>Free interactive educational game about Terry Fox</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Social Images -->
+  <url>
+    <loc>https://www.terrancestanleyfox.com/og-image.svg</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.terrancestanleyfox.com/twitter-image.svg</loc>
+    <lastmod>2024-12-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
