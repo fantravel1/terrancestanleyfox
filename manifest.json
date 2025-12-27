@@ -1,0 +1,67 @@
+{
+  "name": "Terry Fox: Marathon of Hope",
+  "short_name": "Terry Fox",
+  "description": "Experience Terry Fox's legendary 5,373km Marathon of Hope across Canada. Interactive educational game honoring Canada's greatest hero.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-CA",
+  "categories": ["education", "games", "entertainment"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23667eea' width='100' height='100' rx='20'/><text y='.9em' x='10' font-size='80'>🏃</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192' rx='40'/><text y='140' x='30' font-size='130'>🏃</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23667eea' width='512' height='512' rx='100'/><text y='380' x='80' font-size='350'>🏃</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "og-image.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "Terry Fox Marathon of Hope Game"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Play Game",
+      "short_name": "Play",
+      "description": "Start the Marathon of Hope game",
+      "url": "/game.html",
+      "icons": [{"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%234ecdc4' width='96' height='96' rx='20'/><text y='70' x='20' font-size='60'>▶️</text></svg>", "sizes": "96x96"}]
+    },
+    {
+      "name": "Terry Fox Facts",
+      "short_name": "Facts",
+      "description": "Learn facts about Terry Fox",
+      "url": "/facts.html",
+      "icons": [{"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%23ffd700' width='96' height='96' rx='20'/><text y='70' x='20' font-size='60'>❓</text></svg>", "sizes": "96x96"}]
+    },
+    {
+      "name": "Full Story",
+      "short_name": "Story",
+      "description": "Read Terry Fox's complete biography",
+      "url": "/story.html",
+      "icons": [{"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%23764ba2' width='96' height='96' rx='20'/><text y='70' x='20' font-size='60'>📖</text></svg>", "sizes": "96x96"}]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
