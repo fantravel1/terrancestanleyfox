@@ -142,12 +142,20 @@
             touch-action: none;
         }
 
+        /* Device mode classes - applied to body */
+        body.mobile-mode .desktop-only { display: none !important; }
+        body.desktop-mode .mobile-only { display: none !important; }
+
         .game-container {
             position: relative;
             width: 100vw;
             height: 100vh;
             overflow: hidden;
         }
+
+        /* ========================================
+           DESKTOP STYLES (default)
+           ======================================== */
 
         /* Game Header */
         .game-header {
@@ -157,12 +165,12 @@
             right: 0;
             background: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: clamp(10px, 2vw, 15px);
+            padding: 15px 20px;
             z-index: 1000;
         }
 
         .game-title {
-            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
             margin-bottom: 10px;
@@ -174,14 +182,14 @@
 
         .game-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 8px;
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            font-size: 0.9rem;
         }
 
         .stat {
             background: rgba(255, 255, 255, 0.1);
-            padding: 8px;
+            padding: 10px;
             border-radius: 10px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -213,7 +221,7 @@
         /* Determination Meter */
         .determination-meter {
             position: absolute;
-            top: clamp(120px, 25vh, 180px);
+            top: 140px;
             left: 20px;
             right: 20px;
             z-index: 900;
@@ -221,7 +229,7 @@
 
         .meter-label {
             color: white;
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 5px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -230,7 +238,7 @@
         .meter-bar-container {
             background: rgba(0, 0, 0, 0.5);
             border-radius: 20px;
-            height: clamp(20px, 5vw, 30px);
+            height: 25px;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
@@ -250,7 +258,7 @@
         /* Game World */
         .game-world {
             position: absolute;
-            top: clamp(180px, 35vh, 280px);
+            top: 200px;
             left: 0;
             right: 0;
             bottom: 100px;
@@ -264,7 +272,7 @@
             bottom: 0;
             left: 0;
             width: 200%;
-            height: clamp(120px, 30vh, 200px);
+            height: 150px;
             background:
                 linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 45%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.2) 55%, transparent 100%),
                 repeating-linear-gradient(90deg, transparent 0px, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 60px),
@@ -272,13 +280,8 @@
             animation: roadScroll 3s linear infinite;
         }
 
-        .road.slow {
-            animation-duration: 5s;
-        }
-
-        .road.fast {
-            animation-duration: 2s;
-        }
+        .road.slow { animation-duration: 5s; }
+        .road.fast { animation-duration: 2s; }
 
         @keyframes roadScroll {
             0% { transform: translateX(0); }
@@ -288,9 +291,9 @@
         /* Terry Fox Character */
         .terry {
             position: absolute;
-            bottom: clamp(80px, 20vh, 140px);
+            bottom: 100px;
             left: 25%;
-            font-size: clamp(4rem, 12vw, 6rem);
+            font-size: 5rem;
             z-index: 100;
             animation: steadyRun 1s ease-in-out infinite;
             filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
@@ -314,11 +317,15 @@
         /* Supporters/Donors */
         .supporter {
             position: absolute;
-            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-size: 3rem;
             animation: supporterMove 4s linear;
             z-index: 90;
             cursor: pointer;
             transition: transform 0.2s ease;
+        }
+
+        .supporter:hover {
+            transform: scale(1.3);
         }
 
         .supporter:active {
@@ -326,22 +333,16 @@
         }
 
         @keyframes supporterMove {
-            0% {
-                right: -100px;
-                opacity: 0;
-            }
+            0% { right: -100px; opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% {
-                right: 100vw;
-                opacity: 0;
-            }
+            100% { right: 100vw; opacity: 0; }
         }
 
         /* Donations Floating Up */
         .donation-collect {
             position: absolute;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-size: 2rem;
             font-weight: bold;
             color: #ffd700;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -351,14 +352,8 @@
         }
 
         @keyframes donationFloat {
-            0% {
-                transform: translateY(0) scale(0.5);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-150px) scale(1.5);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
         }
 
         /* Weather Effects */
@@ -374,18 +369,10 @@
             transition: opacity 0.5s ease;
         }
 
-        .weather-overlay.active {
-            opacity: 1;
-        }
+        .weather-overlay.active { opacity: 1; }
 
         .rain {
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.1) 10px,
-                rgba(255, 255, 255, 0.1) 12px
-            );
+            background: repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 12px);
             animation: rainFall 0.5s linear infinite;
         }
 
@@ -395,7 +382,7 @@
         }
 
         .wind {
-            background: linear-gradient(90deg, transparent 0%, rgba(200, 200, 200, 0.3) 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(200,200,200,0.3) 50%, transparent 100%);
             animation: windBlow 2s ease-in-out infinite;
         }
 
@@ -408,10 +395,10 @@
             background: radial-gradient(circle, rgba(255, 200, 0, 0.2) 0%, transparent 70%);
         }
 
-        /* Landmarks & Signs */
+        /* Landmarks */
         .landmark {
             position: absolute;
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: 4rem;
             animation: landmarkMove 6s linear;
             z-index: 50;
             opacity: 0.8;
@@ -419,17 +406,9 @@
         }
 
         @keyframes landmarkMove {
-            0% {
-                right: -100px;
-                transform: scale(0.8);
-            }
-            50% {
-                transform: scale(1);
-            }
-            100% {
-                right: 100vw;
-                transform: scale(0.8);
-            }
+            0% { right: -100px; transform: scale(0.8); }
+            50% { transform: scale(1); }
+            100% { right: 100vw; transform: scale(0.8); }
         }
 
         /* City Sign */
@@ -437,9 +416,9 @@
             position: absolute;
             background: linear-gradient(135deg, #2c3e50, #34495e);
             color: white;
-            padding: clamp(15px, 4vw, 25px);
+            padding: 20px;
             border-radius: 15px;
-            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-size: 1.3rem;
             font-weight: 700;
             animation: signMove 5s linear;
             z-index: 85;
@@ -460,8 +439,9 @@
             transform: translate(-50%, -50%);
             background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
-            padding: clamp(20px, 5vw, 40px);
-            max-width: min(500px, 90vw);
+            padding: 35px;
+            max-width: 500px;
+            width: 90%;
             max-height: 80vh;
             overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -476,26 +456,20 @@
         }
 
         @keyframes modalAppear {
-            0% {
-                transform: translate(-50%, -50%) scale(0.8);
-                opacity: 0;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
         .story-modal h2 {
             color: #2c3e50;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-size: 2rem;
             margin-bottom: 15px;
             text-align: center;
         }
 
         .story-modal .location {
             color: #ff6b6b;
-            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-size: 1.2rem;
             font-weight: 600;
             text-align: center;
             margin-bottom: 20px;
@@ -504,7 +478,7 @@
         .story-modal p {
             color: #5a6c7d;
             line-height: 1.8;
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-size: 1.05rem;
             margin-bottom: 15px;
         }
 
@@ -512,9 +486,9 @@
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
             border: none;
-            padding: clamp(12px, 3vw, 18px) clamp(30px, 6vw, 50px);
+            padding: 15px 40px;
             border-radius: 25px;
-            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
@@ -522,8 +496,9 @@
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
-        .story-modal .continue-btn:active {
-            transform: scale(0.95);
+        .story-modal .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
         }
 
         /* Start Screen */
@@ -545,33 +520,40 @@
         }
 
         .start-screen h1 {
-            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-size: 4rem;
             margin-bottom: 15px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            line-height: 1.2;
         }
 
         .start-screen .subtitle {
-            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-size: 1.8rem;
             margin-bottom: 20px;
             font-weight: 600;
         }
 
         .start-screen p {
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-            margin-bottom: 20px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
             max-width: 600px;
             line-height: 1.6;
             opacity: 0.95;
+        }
+
+        .start-screen .device-hint {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1rem;
         }
 
         .start-btn {
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
             border: none;
-            padding: clamp(15px, 4vw, 25px) clamp(40px, 8vw, 70px);
+            padding: 20px 60px;
             border-radius: 30px;
-            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-size: 1.6rem;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
@@ -584,9 +566,8 @@
             50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(255, 107, 107, 0.7); }
         }
 
-        .start-btn:active {
-            transform: scale(0.95);
-            animation: none;
+        .start-btn:hover {
+            transform: scale(1.08);
         }
 
         /* Info Panel */
@@ -597,76 +578,48 @@
             right: 0;
             background: rgba(0, 0, 0, 0.85);
             color: white;
-            padding: clamp(15px, 4vw, 25px);
+            padding: 20px;
             z-index: 900;
             border-top: 3px solid #ff6b6b;
         }
 
         .current-challenge {
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-size: 1.1rem;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         .challenge-icon {
-            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-size: 1.8rem;
             margin: 0 10px;
         }
 
         .next-city {
             text-align: center;
-            font-size: clamp(0.8rem, 2vw, 1rem);
+            font-size: 0.95rem;
             opacity: 0.8;
-        }
-
-        /* Achievement */
-        .achievement {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, #ffd700, #ffed4a);
-            color: #2c3e50;
-            padding: clamp(20px, 5vw, 30px);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            animation: achievementPop 3s ease-in-out;
-            z-index: 2500;
-            max-width: min(400px, 90vw);
-            text-align: center;
-        }
-
-        @keyframes achievementPop {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            20%, 80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-        }
-
-        .achievement h3 {
-            font-size: clamp(1.3rem, 4vw, 2rem);
-            margin-bottom: 10px;
-        }
-
-        .achievement p {
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-            opacity: 0.9;
         }
 
         /* Pause Button */
         .pause-btn {
             position: absolute;
-            top: clamp(10px, 3vw, 20px);
-            right: clamp(10px, 3vw, 20px);
+            top: 15px;
+            right: 15px;
             background: rgba(255, 255, 255, 0.9);
             border: none;
             border-radius: 15px;
-            width: clamp(50px, 12vw, 70px);
-            height: clamp(50px, 12vw, 70px);
-            font-size: clamp(1.5rem, 4vw, 2rem);
+            width: 60px;
+            height: 60px;
+            font-size: 1.8rem;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 1001;
+        }
+
+        .pause-btn:hover {
+            background: white;
+            transform: scale(1.1);
         }
 
         /* Pause Screen */
@@ -687,17 +640,15 @@
             padding: 20px;
         }
 
-        .pause-screen.active {
-            display: flex;
-        }
+        .pause-screen.active { display: flex; }
 
         .pause-screen h2 {
-            font-size: clamp(2rem, 8vw, 4rem);
+            font-size: 3rem;
             margin-bottom: 30px;
         }
 
         .pause-stats {
-            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-size: 1.3rem;
             margin: 20px 0;
             line-height: 2.5;
         }
@@ -713,9 +664,9 @@
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             color: white;
             border: none;
-            padding: clamp(12px, 3vw, 20px) clamp(25px, 6vw, 40px);
+            padding: 15px 35px;
             border-radius: 25px;
-            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
@@ -725,20 +676,324 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .game-stats {
-                grid-template-columns: repeat(2, 1fr);
+        /* Achievement */
+        .achievement {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #2c3e50;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            animation: achievementPop 3s ease-in-out;
+            z-index: 2500;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        @keyframes achievementPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            20%, 80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        }
+
+        .achievement h3 { font-size: 1.6rem; margin-bottom: 10px; }
+        .achievement p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* ========================================
+           MOBILE-SPECIFIC STYLES
+           ======================================== */
+
+        /* Mobile Game Header - Compact */
+        body.mobile-mode .game-header {
+            padding: 8px 12px;
+        }
+
+        body.mobile-mode .game-title {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        body.mobile-mode .game-stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            font-size: 0.75rem;
+        }
+
+        body.mobile-mode .stat {
+            padding: 6px;
+            border-radius: 8px;
+        }
+
+        body.mobile-mode .stat-label {
+            font-size: 0.7em;
+        }
+
+        body.mobile-mode .stat-value {
+            font-size: 1.1em;
+        }
+
+        /* Mobile Determination Meter */
+        body.mobile-mode .determination-meter {
+            top: 95px;
+            left: 12px;
+            right: 12px;
+        }
+
+        body.mobile-mode .meter-label {
+            font-size: 0.85rem;
+        }
+
+        body.mobile-mode .meter-bar-container {
+            height: 18px;
+        }
+
+        /* Mobile Game World - More space */
+        body.mobile-mode .game-world {
+            top: 145px;
+            bottom: 140px;
+        }
+
+        /* Mobile Terry - Larger */
+        body.mobile-mode .terry {
+            font-size: 4.5rem;
+            left: 15%;
+            bottom: 80px;
+        }
+
+        /* Mobile Supporters - MUCH larger touch targets */
+        body.mobile-mode .supporter {
+            font-size: 4rem;
+            min-width: 70px;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Road */
+        body.mobile-mode .road {
+            height: 100px;
+        }
+
+        /* Mobile Info Panel - Enhanced for thumb zone */
+        body.mobile-mode .info-panel {
+            padding: 12px 15px;
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
+        }
+
+        body.mobile-mode .current-challenge {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        body.mobile-mode .challenge-icon {
+            font-size: 1.4rem;
+        }
+
+        body.mobile-mode .next-city {
+            font-size: 0.85rem;
+        }
+
+        /* Mobile Tap Zone - The big innovation */
+        .mobile-tap-zone {
+            position: absolute;
+            bottom: 85px;
+            left: 0;
+            right: 0;
+            height: 55px;
+            background: linear-gradient(180deg, transparent 0%, rgba(255,215,0,0.15) 100%);
+            z-index: 850;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border-top: 2px dashed rgba(255,215,0,0.4);
+        }
+
+        body.mobile-mode .mobile-tap-zone {
+            display: flex;
+        }
+
+        .tap-zone-hint {
+            color: white;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            animation: tapHintPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes tapHintPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Mobile Swipe Boost Indicator */
+        .swipe-boost-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #4ecdc4, #44a8b3);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(78, 205, 196, 0.5);
+            z-index: 250;
+            animation: boostPop 0.8s ease-out forwards;
+            display: none;
+        }
+
+        body.mobile-mode .swipe-boost-indicator.active {
+            display: block;
+        }
+
+        @keyframes boostPop {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            30% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+
+        /* Mobile Pause Button - Larger */
+        body.mobile-mode .pause-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 1.4rem;
+            top: 8px;
+            right: 8px;
+            border-radius: 12px;
+        }
+
+        /* Mobile Start Screen */
+        body.mobile-mode .start-screen h1 {
+            font-size: 2.5rem;
+        }
+
+        body.mobile-mode .start-screen .subtitle {
+            font-size: 1.3rem;
+        }
+
+        body.mobile-mode .start-screen p {
+            font-size: 0.95rem;
+        }
+
+        body.mobile-mode .start-btn {
+            padding: 18px 50px;
+            font-size: 1.3rem;
+        }
+
+        body.mobile-mode .device-hint {
+            font-size: 0.9rem;
+            padding: 12px 20px;
+        }
+
+        /* Mobile Story Modal */
+        body.mobile-mode .story-modal {
+            padding: 25px 20px;
+            max-width: 95%;
+        }
+
+        body.mobile-mode .story-modal h2 {
+            font-size: 1.5rem;
+        }
+
+        body.mobile-mode .story-modal .location {
+            font-size: 1rem;
+        }
+
+        body.mobile-mode .story-modal p {
+            font-size: 0.95rem;
+        }
+
+        body.mobile-mode .story-modal .continue-btn {
+            padding: 14px 30px;
+            font-size: 1rem;
+        }
+
+        /* Mobile Donation Collect - Bigger */
+        body.mobile-mode .donation-collect {
+            font-size: 2.5rem;
+        }
+
+        /* Mobile Landmarks - Smaller to not block */
+        body.mobile-mode .landmark {
+            font-size: 2.5rem;
+            opacity: 0.6;
+        }
+
+        /* Mobile City Sign */
+        body.mobile-mode .city-sign {
+            padding: 12px 18px;
+            font-size: 1rem;
+        }
+
+        /* Landscape Warning for Mobile */
+        .landscape-warning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .landscape-warning .rotate-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: rotatePhone 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotatePhone {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(90deg); }
+        }
+
+        .landscape-warning h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .landscape-warning p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        /* Show landscape warning only on mobile in landscape */
+        @media (orientation: landscape) and (max-height: 500px) {
+            body.mobile-mode .landscape-warning {
+                display: flex;
             }
         }
 
-        @media (orientation: landscape) and (max-height: 500px) {
-            .game-world {
-                top: 120px;
-            }
-            .determination-meter {
-                top: 80px;
-            }
+        /* Desktop keyboard hints */
+        .keyboard-hints {
+            position: absolute;
+            bottom: 110px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            z-index: 800;
+        }
+
+        .keyboard-hints kbd {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin: 0 3px;
         }
 
         /* Accessibility */
@@ -752,13 +1007,34 @@
 </head>
 <body>
     <div class="game-container">
+        <!-- Landscape Warning (Mobile Only) -->
+        <div class="landscape-warning mobile-only">
+            <div class="rotate-icon">📱</div>
+            <h2>Please Rotate Your Device</h2>
+            <p>This game is best experienced in portrait mode</p>
+        </div>
+
         <!-- Start Screen -->
         <div class="start-screen" id="startScreen">
             <h1>🏃 TERRY FOX 🏃</h1>
             <p class="subtitle">Marathon of Hope</p>
             <p>On April 12, 1980, Terry Fox began an extraordinary journey across Canada with one leg and a dream to raise money for cancer research.</p>
             <p>Experience his inspiring journey. Collect supporters and donations. Keep his determination strong through 143 days of running.</p>
-            <p style="font-weight: 600; color: #ffd700;">Tap supporters along the route to collect donations.<br>Watch the determination meter - keep Terry's hope alive!</p>
+
+            <!-- Mobile-specific hint -->
+            <div class="device-hint mobile-only" id="mobileHint">
+                📱 <strong>Mobile Controls:</strong><br>
+                Tap supporters to collect donations<br>
+                Swipe right for a determination boost!
+            </div>
+
+            <!-- Desktop-specific hint -->
+            <div class="device-hint desktop-only" id="desktopHint">
+                🖱️ <strong>Desktop Controls:</strong><br>
+                Click supporters to collect donations<br>
+                Press <kbd>Space</kbd> to pause
+            </div>
+
             <button class="start-btn" id="startBtn">BEGIN THE JOURNEY</button>
         </div>
 
@@ -801,6 +1077,18 @@
             <div class="weather-overlay" id="weatherOverlay"></div>
             <div class="road" id="road"></div>
             <div class="terry" id="terry">🏃‍♂️</div>
+            <!-- Mobile Swipe Boost Indicator -->
+            <div class="swipe-boost-indicator" id="swipeBoost">⚡ BOOST! +10 DETERMINATION</div>
+        </div>
+
+        <!-- Mobile Tap Zone -->
+        <div class="mobile-tap-zone mobile-only" id="mobileTapZone">
+            <span class="tap-zone-hint">👆 TAP SUPPORTERS TO COLLECT</span>
+        </div>
+
+        <!-- Desktop Keyboard Hints -->
+        <div class="keyboard-hints desktop-only">
+            <kbd>Space</kbd> Pause &nbsp;|&nbsp; <kbd>Click</kbd> Collect
         </div>
 
         <!-- Info Panel -->
@@ -842,8 +1130,41 @@
     </div>
 
     <script>
+        // Device Detection
+        const DeviceDetector = {
+            isMobile: function() {
+                // Check multiple signals for mobile detection
+                const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+                const smallScreen = window.innerWidth <= 768;
+                const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+                // Consider it mobile if it has touch AND (small screen OR mobile user agent)
+                return hasTouch && (smallScreen || mobileUA);
+            },
+
+            applyMode: function() {
+                const body = document.body;
+                if (this.isMobile()) {
+                    body.classList.add('mobile-mode');
+                    body.classList.remove('desktop-mode');
+                    console.log('📱 Mobile mode activated');
+                } else {
+                    body.classList.add('desktop-mode');
+                    body.classList.remove('mobile-mode');
+                    console.log('🖥️ Desktop mode activated');
+                }
+            }
+        };
+
+        // Apply mode on load and resize
+        DeviceDetector.applyMode();
+        window.addEventListener('resize', () => DeviceDetector.applyMode());
+
         class TerryFoxJourney {
             constructor() {
+                // Device mode
+                this.isMobile = DeviceDetector.isMobile();
+
                 // Game state
                 this.distance = 0;
                 this.day = 1;
@@ -852,6 +1173,11 @@
                 this.determination = 100;
                 this.isPaused = false;
                 this.currentCityIndex = 0;
+
+                // Swipe tracking for mobile
+                this.touchStartX = 0;
+                this.touchStartY = 0;
+                this.lastSwipeTime = 0;
 
                 // Cities along Terry's route with real facts
                 this.cities = [
@@ -925,20 +1251,111 @@
             }
 
             initializeGame() {
-                // Event listeners
+                // Basic event listeners
                 document.getElementById('startBtn').addEventListener('click', () => this.startGame());
                 document.getElementById('pauseBtn').addEventListener('click', () => this.togglePause());
                 document.getElementById('resumeBtn').addEventListener('click', () => this.togglePause());
                 document.getElementById('restartBtn').addEventListener('click', () => this.restart());
                 document.getElementById('continueBtn').addEventListener('click', () => this.closeStory());
 
-                // Touch/click on game world to collect supporters
                 const gameWorld = document.getElementById('gameWorld');
-                gameWorld.addEventListener('click', (e) => {
-                    if (!this.isPaused && e.target.classList.contains('supporter')) {
-                        this.collectSupporter(e.target);
-                    }
-                });
+
+                // MOBILE-SPECIFIC CONTROLS
+                if (this.isMobile) {
+                    // Touch to collect supporters
+                    gameWorld.addEventListener('touchstart', (e) => {
+                        if (!this.isPaused && e.target.classList.contains('supporter')) {
+                            this.collectSupporter(e.target);
+                        }
+                        // Track touch start for swipe
+                        this.touchStartX = e.touches[0].clientX;
+                        this.touchStartY = e.touches[0].clientY;
+                    }, { passive: true });
+
+                    // Swipe detection for boost
+                    gameWorld.addEventListener('touchend', (e) => {
+                        if (this.isPaused) return;
+
+                        const touchEndX = e.changedTouches[0].clientX;
+                        const touchEndY = e.changedTouches[0].clientY;
+                        const deltaX = touchEndX - this.touchStartX;
+                        const deltaY = Math.abs(touchEndY - this.touchStartY);
+
+                        // Swipe right gesture (min 80px, mostly horizontal)
+                        if (deltaX > 80 && deltaY < 50) {
+                            const now = Date.now();
+                            if (now - this.lastSwipeTime > 2000) { // 2s cooldown
+                                this.lastSwipeTime = now;
+                                this.triggerSwipeBoost();
+                            }
+                        }
+                    }, { passive: true });
+
+                    // Tap zone fallback - collect nearest supporter
+                    document.getElementById('mobileTapZone')?.addEventListener('touchstart', (e) => {
+                        if (this.isPaused) return;
+                        const supporters = document.querySelectorAll('.supporter');
+                        if (supporters.length > 0) {
+                            // Collect the rightmost (newest) supporter
+                            const nearestSupporter = Array.from(supporters).reduce((nearest, current) => {
+                                const nearestRect = nearest.getBoundingClientRect();
+                                const currentRect = current.getBoundingClientRect();
+                                return currentRect.left < nearestRect.left ? current : nearest;
+                            });
+                            this.collectSupporter(nearestSupporter);
+                        }
+                    }, { passive: true });
+
+                } else {
+                    // DESKTOP CONTROLS
+                    // Click to collect supporters
+                    gameWorld.addEventListener('click', (e) => {
+                        if (!this.isPaused && e.target.classList.contains('supporter')) {
+                            this.collectSupporter(e.target);
+                        }
+                    });
+
+                    // Keyboard controls
+                    document.addEventListener('keydown', (e) => {
+                        if (e.code === 'Space') {
+                            e.preventDefault();
+                            if (!document.getElementById('storyModal').classList.contains('active') &&
+                                !document.getElementById('startScreen').style.display !== 'none') {
+                                this.togglePause();
+                            }
+                        }
+                        // ESC to pause
+                        if (e.code === 'Escape') {
+                            if (!this.isPaused && !document.getElementById('storyModal').classList.contains('active')) {
+                                this.togglePause();
+                            }
+                        }
+                    });
+                }
+            }
+
+            triggerSwipeBoost() {
+                // Add determination boost
+                this.determination = Math.min(100, this.determination + 10);
+
+                // Show boost indicator
+                const boostEl = document.getElementById('swipeBoost');
+                boostEl.classList.add('active');
+
+                // Vibrate
+                if ('vibrate' in navigator) {
+                    navigator.vibrate([50, 30, 50]);
+                }
+
+                // Remove after animation
+                setTimeout(() => {
+                    boostEl.classList.remove('active');
+                }, 800);
+
+                // Show achievement occasionally
+                if (Math.random() < 0.3) {
+                    this.showAchievement('⚡ Speed Boost!', 'Terry feels the crowd\'s energy!');
+                }
             }
 
             startGame() {
@@ -1064,15 +1481,23 @@
                 supporter.dataset.value = type.value;
                 supporter.dataset.name = type.name;
 
-                supporter.style.bottom = Math.random() * 40 + 30 + '%';
+                // Mobile: position supporters in thumb-friendly zone (lower 60% of game world)
+                // Desktop: use full vertical range
+                if (this.isMobile) {
+                    supporter.style.bottom = Math.random() * 35 + 25 + '%'; // 25-60% from bottom
+                } else {
+                    supporter.style.bottom = Math.random() * 40 + 30 + '%'; // 30-70% from bottom
+                }
 
                 document.getElementById('gameWorld').appendChild(supporter);
 
+                // Mobile: slightly longer time to give more chance to tap
+                const duration = this.isMobile ? 4500 : 4000;
                 setTimeout(() => {
                     if (supporter.parentNode) {
                         supporter.remove();
                     }
-                }, 4000);
+                }, duration);
             }
 
             collectSupporter(supporterElement) {
