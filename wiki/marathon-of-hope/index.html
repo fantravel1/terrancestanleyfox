@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Marathon of Hope: Complete Guide to Terry Fox's Cross-Canada Run | Terry Fox Wiki</title>
+
+    <meta name="description" content="The definitive guide to Terry Fox's Marathon of Hope - 143 days, 5,373 kilometers, from St. John's to Thunder Bay. Day-by-day accounts, route maps, and the complete story.">
+    <meta name="keywords" content="marathon of hope, terry fox run 1980, terry fox route, terry fox cross canada, terry fox journey, terry fox st johns, terry fox thunder bay">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.terrancestanleyfox.com/wiki/marathon-of-hope/">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Marathon of Hope",
+      "description": "Terry Fox's cross-Canada run to raise money for cancer research",
+      "startDate": "1980-04-12",
+      "endDate": "1980-09-01",
+      "location": {"@type": "Country", "name": "Canada"},
+      "organizer": {"@type": "Person", "name": "Terry Fox"}
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏃</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        header {
+            padding: 20px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.95rem; opacity: 0.8; transition: opacity 0.3s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 120px 20px 60px; }
+
+        .breadcrumb { margin-bottom: 30px; font-size: 0.9rem; opacity: 0.7; }
+        .breadcrumb a { color: #4facfe; text-decoration: none; }
+
+        .page-header { text-align: center; margin-bottom: 50px; }
+        .page-icon { font-size: 5rem; margin-bottom: 20px; }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto 30px; }
+
+        /* Stats Banner */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label { font-size: 0.9rem; opacity: 0.7; margin-top: 5px; }
+
+        /* Route Map */
+        .route-map {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .route-map h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .route-cities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .route-city {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .route-city:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .route-city .km { font-size: 0.75rem; opacity: 0.6; }
+        .route-city.start { background: rgba(76, 175, 80, 0.3); border: 1px solid rgba(76, 175, 80, 0.5); }
+        .route-city.end { background: rgba(244, 67, 54, 0.3); border: 1px solid rgba(244, 67, 54, 0.5); }
+
+        /* Province Sections */
+        .provinces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .province-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .province-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .province-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .province-flag { font-size: 2.5rem; }
+
+        .province-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .province-dates { font-size: 0.85rem; opacity: 0.6; }
+
+        .province-stats {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .province-stat-item { text-align: center; flex: 1; }
+        .province-stat-value { font-weight: 700; color: #ffd700; }
+        .province-stat-label { font-size: 0.75rem; opacity: 0.6; }
+
+        .province-description { font-size: 0.95rem; opacity: 0.85; line-height: 1.6; }
+
+        /* Articles Grid */
+        .articles-section { margin-bottom: 40px; }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .article-card {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .article-card:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .article-icon { font-size: 2rem; }
+        .article-info h4 { font-size: 1rem; margin-bottom: 5px; }
+        .article-info p { font-size: 0.85rem; opacity: 0.7; margin: 0; }
+
+        /* Day by Day Section */
+        .day-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .day-link {
+            padding: 15px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .day-link:hover { background: rgba(102, 126, 234, 0.3); }
+        .day-link .day-num { font-weight: 700; display: block; }
+        .day-link .day-date { font-size: 0.7rem; opacity: 0.6; }
+
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 60px;
+        }
+
+        .footer-links { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 20px; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.7; }
+        .footer-text { opacity: 0.5; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/index.html" class="logo">🏃 TERRY FOX</a>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="/wiki/" class="active">Wiki</a>
+                <a href="/story.html">Story</a>
+                <a href="/facts.html">Facts</a>
+                <a href="/game.html">Play Game</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/wiki/">Wiki</a> / Marathon of Hope
+        </div>
+
+        <div class="page-header">
+            <div class="page-icon">🏃</div>
+            <h1>Marathon of Hope</h1>
+            <p class="page-subtitle">The complete, definitive guide to Terry Fox's legendary cross-Canada run. 143 days. 5,373 kilometers. One extraordinary journey that changed the world.</p>
+        </div>
+
+        <!-- Stats Banner -->
+        <div class="stats-banner">
+            <div class="stat-card">
+                <div class="stat-value">143</div>
+                <div class="stat-label">Days Running</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5,373</div>
+                <div class="stat-label">Kilometers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">~42</div>
+                <div class="stat-label">KM Per Day</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$24.17M</div>
+                <div class="stat-label">Raised</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Provinces</div>
+            </div>
+        </div>
+
+        <!-- Route Map -->
+        <section class="route-map">
+            <h2>The Marathon Route</h2>
+            <div class="route-cities">
+                <a href="/wiki/marathon-of-hope/st-johns.html" class="route-city start">
+                    🌊 St. John's, NL <span class="km">START</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/halifax.html" class="route-city">
+                    📍 Halifax, NS <span class="km">896 km</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/charlottetown.html" class="route-city">
+                    📍 Charlottetown, PEI <span class="km">1,100 km</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/moncton.html" class="route-city">
+                    📍 Moncton, NB <span class="km">1,300 km</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/quebec-city.html" class="route-city">
+                    📍 Quebec City, QC <span class="km">2,100 km</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/montreal.html" class="route-city">
+                    📍 Montreal, QC <span class="km">2,400 km</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/ottawa.html" class="route-city">
+                    📍 Ottawa, ON <span class="km">2,600 km</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/toronto.html" class="route-city">
+                    📍 Toronto, ON <span class="km">3,200 km</span>
+                </a>
+                <a href="/wiki/marathon-of-hope/thunder-bay.html" class="route-city end">
+                    🛑 Thunder Bay, ON <span class="km">5,373 km</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Province by Province -->
+        <section class="articles-section">
+            <h2 class="section-title">Province by Province</h2>
+            <div class="provinces-grid">
+                <a href="/wiki/marathon-of-hope/newfoundland.html" class="province-card">
+                    <div class="province-header">
+                        <span class="province-flag">🏔️</span>
+                        <div>
+                            <div class="province-name">Newfoundland</div>
+                            <div class="province-dates">April 12 - May 10, 1980</div>
+                        </div>
+                    </div>
+                    <div class="province-stats">
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">28</div>
+                            <div class="province-stat-label">Days</div>
+                        </div>
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">~900 km</div>
+                            <div class="province-stat-label">Distance</div>
+                        </div>
+                    </div>
+                    <p class="province-description">Where it all began. Terry dipped his leg in the Atlantic Ocean and faced the lonely, grueling early days with minimal media attention.</p>
+                </a>
+
+                <a href="/wiki/marathon-of-hope/nova-scotia.html" class="province-card">
+                    <div class="province-header">
+                        <span class="province-flag">🌊</span>
+                        <div>
+                            <div class="province-name">Nova Scotia</div>
+                            <div class="province-dates">May 10 - May 25, 1980</div>
+                        </div>
+                    </div>
+                    <div class="province-stats">
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">15</div>
+                            <div class="province-stat-label">Days</div>
+                        </div>
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">~600 km</div>
+                            <div class="province-stat-label">Distance</div>
+                        </div>
+                    </div>
+                    <p class="province-description">Through Halifax and across the province, Terry began gaining more attention and support from locals.</p>
+                </a>
+
+                <a href="/wiki/marathon-of-hope/pei.html" class="province-card">
+                    <div class="province-header">
+                        <span class="province-flag">🏝️</span>
+                        <div>
+                            <div class="province-name">Prince Edward Island</div>
+                            <div class="province-dates">May 25 - May 28, 1980</div>
+                        </div>
+                    </div>
+                    <div class="province-stats">
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">3</div>
+                            <div class="province-stat-label">Days</div>
+                        </div>
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">~200 km</div>
+                            <div class="province-stat-label">Distance</div>
+                        </div>
+                    </div>
+                    <p class="province-description">A brief but memorable crossing of Canada's smallest province, with warm welcomes in Charlottetown.</p>
+                </a>
+
+                <a href="/wiki/marathon-of-hope/new-brunswick.html" class="province-card">
+                    <div class="province-header">
+                        <span class="province-flag">🌲</span>
+                        <div>
+                            <div class="province-name">New Brunswick</div>
+                            <div class="province-dates">May 28 - June 12, 1980</div>
+                        </div>
+                    </div>
+                    <div class="province-stats">
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">15</div>
+                            <div class="province-stat-label">Days</div>
+                        </div>
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">~500 km</div>
+                            <div class="province-stat-label">Distance</div>
+                        </div>
+                    </div>
+                    <p class="province-description">Running through Moncton and across the province, momentum continued building.</p>
+                </a>
+
+                <a href="/wiki/marathon-of-hope/quebec.html" class="province-card">
+                    <div class="province-header">
+                        <span class="province-flag">⚜️</span>
+                        <div>
+                            <div class="province-name">Quebec</div>
+                            <div class="province-dates">June 12 - July 4, 1980</div>
+                        </div>
+                    </div>
+                    <div class="province-stats">
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">22</div>
+                            <div class="province-stat-label">Days</div>
+                        </div>
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">~900 km</div>
+                            <div class="province-stat-label">Distance</div>
+                        </div>
+                    </div>
+                    <p class="province-description">Initially challenging due to language barriers, but Montreal provided a turning point with massive crowds.</p>
+                </a>
+
+                <a href="/wiki/marathon-of-hope/ontario.html" class="province-card">
+                    <div class="province-header">
+                        <span class="province-flag">🍁</span>
+                        <div>
+                            <div class="province-name">Ontario</div>
+                            <div class="province-dates">July 4 - September 1, 1980</div>
+                        </div>
+                    </div>
+                    <div class="province-stats">
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">59</div>
+                            <div class="province-stat-label">Days</div>
+                        </div>
+                        <div class="province-stat-item">
+                            <div class="province-stat-value">~2,300 km</div>
+                            <div class="province-stat-label">Distance</div>
+                        </div>
+                    </div>
+                    <p class="province-description">The longest stretch included Ottawa, Toronto, and the heartbreaking end near Thunder Bay.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Key Events -->
+        <section class="articles-section">
+            <h2 class="section-title">Key Events & Milestones</h2>
+            <div class="articles-grid">
+                <a href="/wiki/marathon-of-hope/day-1-start.html" class="article-card">
+                    <span class="article-icon">🌊</span>
+                    <div class="article-info">
+                        <h4>Day 1: The Atlantic Dip</h4>
+                        <p>April 12, 1980 - Terry begins in St. John's</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/first-week.html" class="article-card">
+                    <span class="article-icon">❄️</span>
+                    <div class="article-info">
+                        <h4>The Difficult First Week</h4>
+                        <p>Cold, snow, and loneliness in Newfoundland</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/media-attention.html" class="article-card">
+                    <span class="article-icon">📺</span>
+                    <div class="article-info">
+                        <h4>Growing Media Attention</h4>
+                        <p>How Canada discovered Terry's mission</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/canada-day.html" class="article-card">
+                    <span class="article-icon">🇨🇦</span>
+                    <div class="article-info">
+                        <h4>Canada Day 1980</h4>
+                        <p>July 1st - A nation celebrates Terry</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/toronto-arrival.html" class="article-card">
+                    <span class="article-icon">🏙️</span>
+                    <div class="article-info">
+                        <h4>Toronto: The Turning Point</h4>
+                        <p>Massive crowds and national attention</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/bobby-orr.html" class="article-card">
+                    <span class="article-icon">🏒</span>
+                    <div class="article-info">
+                        <h4>Meeting Bobby Orr</h4>
+                        <p>When a legend met a hero</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/daily-routine.html" class="article-card">
+                    <span class="article-icon">⏰</span>
+                    <div class="article-info">
+                        <h4>Terry's Daily Routine</h4>
+                        <p>A marathon every single day</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/weather-challenges.html" class="article-card">
+                    <span class="article-icon">🌧️</span>
+                    <div class="article-info">
+                        <h4>Weather Challenges</h4>
+                        <p>Rain, heat, wind - Terry ran through it all</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/physical-toll.html" class="article-card">
+                    <span class="article-icon">💪</span>
+                    <div class="article-info">
+                        <h4>The Physical Toll</h4>
+                        <p>Injuries, pain, and perseverance</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/support-van.html" class="article-card">
+                    <span class="article-icon">🚐</span>
+                    <div class="article-info">
+                        <h4>The Support Van</h4>
+                        <p>Doug Alward and the Ford Econoline</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/final-days.html" class="article-card">
+                    <span class="article-icon">😢</span>
+                    <div class="article-info">
+                        <h4>The Final Days</h4>
+                        <p>August 28 - September 1, 1980</p>
+                    </div>
+                </a>
+                <a href="/wiki/marathon-of-hope/thunder-bay-end.html" class="article-card">
+                    <span class="article-icon">🛑</span>
+                    <div class="article-info">
+                        <h4>Day 143: Thunder Bay</h4>
+                        <p>The heartbreaking end of the Marathon</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Day by Day -->
+        <section class="articles-section">
+            <h2 class="section-title">Day-by-Day Journey</h2>
+            <p style="opacity: 0.8; margin-bottom: 20px;">Explore Terry's complete journey with detailed accounts of each day on the road.</p>
+            <div class="day-grid">
+                <a href="/wiki/marathon-of-hope/day-001.html" class="day-link"><span class="day-num">Day 1</span><span class="day-date">Apr 12</span></a>
+                <a href="/wiki/marathon-of-hope/day-010.html" class="day-link"><span class="day-num">Day 10</span><span class="day-date">Apr 21</span></a>
+                <a href="/wiki/marathon-of-hope/day-020.html" class="day-link"><span class="day-num">Day 20</span><span class="day-date">May 1</span></a>
+                <a href="/wiki/marathon-of-hope/day-030.html" class="day-link"><span class="day-num">Day 30</span><span class="day-date">May 11</span></a>
+                <a href="/wiki/marathon-of-hope/day-040.html" class="day-link"><span class="day-num">Day 40</span><span class="day-date">May 21</span></a>
+                <a href="/wiki/marathon-of-hope/day-050.html" class="day-link"><span class="day-num">Day 50</span><span class="day-date">May 31</span></a>
+                <a href="/wiki/marathon-of-hope/day-060.html" class="day-link"><span class="day-num">Day 60</span><span class="day-date">Jun 10</span></a>
+                <a href="/wiki/marathon-of-hope/day-070.html" class="day-link"><span class="day-num">Day 70</span><span class="day-date">Jun 20</span></a>
+                <a href="/wiki/marathon-of-hope/day-080.html" class="day-link"><span class="day-num">Day 80</span><span class="day-date">Jun 30</span></a>
+                <a href="/wiki/marathon-of-hope/day-081.html" class="day-link"><span class="day-num">Day 81</span><span class="day-date">Jul 1</span></a>
+                <a href="/wiki/marathon-of-hope/day-090.html" class="day-link"><span class="day-num">Day 90</span><span class="day-date">Jul 10</span></a>
+                <a href="/wiki/marathon-of-hope/day-100.html" class="day-link"><span class="day-num">Day 100</span><span class="day-date">Jul 20</span></a>
+                <a href="/wiki/marathon-of-hope/day-110.html" class="day-link"><span class="day-num">Day 110</span><span class="day-date">Jul 30</span></a>
+                <a href="/wiki/marathon-of-hope/day-120.html" class="day-link"><span class="day-num">Day 120</span><span class="day-date">Aug 9</span></a>
+                <a href="/wiki/marathon-of-hope/day-130.html" class="day-link"><span class="day-num">Day 130</span><span class="day-date">Aug 19</span></a>
+                <a href="/wiki/marathon-of-hope/day-140.html" class="day-link"><span class="day-num">Day 140</span><span class="day-date">Aug 29</span></a>
+                <a href="/wiki/marathon-of-hope/day-143.html" class="day-link"><span class="day-num">Day 143</span><span class="day-date">Sep 1</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <nav class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/wiki/">Wiki</a>
+            <a href="/story.html">Story</a>
+            <a href="/game.html">Play Game</a>
+            <a href="https://www.terryfox.org" target="_blank" rel="noopener">Terry Fox Foundation</a>
+        </nav>
+        <p class="footer-text">© 2024 Terry Fox Marathon of Hope | Honoring a Canadian Hero</p>
+    </footer>
+</body>
+</html>

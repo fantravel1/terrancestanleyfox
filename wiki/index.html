@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Terry Fox Wiki: The Complete Encyclopedia of Canada's Greatest Hero</title>
+
+    <!-- Primary SEO Meta Tags -->
+    <meta name="description" content="The most comprehensive Terry Fox encyclopedia online. Explore hundreds of pages covering every aspect of Terry Fox's life, the Marathon of Hope, his legacy, and ongoing impact on cancer research worldwide.">
+    <meta name="keywords" content="terry fox wiki, terry fox encyclopedia, terry fox biography, marathon of hope history, terry fox complete guide, terry fox legacy, terry fox research, canadian hero encyclopedia">
+    <meta name="author" content="Terry Fox Memorial">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://www.terrancestanleyfox.com/wiki/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.terrancestanleyfox.com/wiki/">
+    <meta property="og:title" content="Terry Fox Wiki: The Complete Encyclopedia">
+    <meta property="og:description" content="Explore the most comprehensive collection of information about Terry Fox's life, Marathon of Hope, and lasting legacy.">
+    <meta property="og:image" content="https://www.terrancestanleyfox.com/og-image.svg">
+    <meta property="og:site_name" content="Terry Fox Marathon of Hope">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Terry Fox Wiki: The Complete Encyclopedia">
+    <meta name="twitter:description" content="Hundreds of pages covering every aspect of Terry Fox's life and legacy.">
+    <meta name="twitter:image" content="https://www.terrancestanleyfox.com/twitter-image.svg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Terry Fox Wiki",
+      "description": "The most comprehensive encyclopedia about Terry Fox, the Marathon of Hope, and his lasting legacy in cancer research.",
+      "url": "https://www.terrancestanleyfox.com/wiki/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.terrancestanleyfox.com/wiki/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Terry Fox Memorial"
+      }
+    }
+    </script>
+
+    <!-- PWA / Mobile App -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Terry Fox Wiki">
+    <meta name="theme-color" content="#667eea">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        header {
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .nav-links a.active {
+            opacity: 1;
+            color: #ffd700;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* Categories Grid */
+        .categories-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 30px;
+            text-align: center;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-description {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .category-count {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .quick-links h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .quick-link-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Featured Articles */
+        .featured-section {
+            margin-bottom: 60px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .featured-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .featured-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .featured-excerpt {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        /* Search Section */
+        .search-section {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--glass-bg);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 60px;
+        }
+
+        .search-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .search-section p {
+            opacity: 0.8;
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 1rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 30px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+            border-radius: 25px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            background: var(--primary-gradient);
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--glass-border);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 60px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-text {
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 25px;
+            }
+
+            .hero-stat-value {
+                font-size: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/index.html" class="logo">🏃 TERRY FOX</a>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="/wiki/" class="active">Wiki</a>
+                <a href="/story.html">Story</a>
+                <a href="/facts.html">Facts</a>
+                <a href="/game.html">Play Game</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="hero-icon">📚</span>
+            <h1>Terry Fox Encyclopedia</h1>
+            <p class="hero-subtitle">
+                The most comprehensive resource about Terrance Stanley "Terry" Fox. Explore hundreds of meticulously researched pages covering every aspect of his life, the Marathon of Hope, and his enduring legacy in cancer research.
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">200+</div>
+                    <div class="hero-stat-label">Wiki Pages</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">12</div>
+                    <div class="hero-stat-label">Categories</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">500+</div>
+                    <div class="hero-stat-label">References</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Categories -->
+        <section class="categories-section">
+            <h2 class="section-title">Explore Categories</h2>
+            <div class="categories-grid">
+                <a href="/wiki/early-life/" class="category-card">
+                    <span class="category-icon">👶</span>
+                    <h3 class="category-title">Early Life & Family</h3>
+                    <p class="category-description">Terry's childhood in Winnipeg and Port Coquitlam, his family background, education, and the formative years that shaped his character.</p>
+                    <span class="category-count">📄 18 articles</span>
+                </a>
+
+                <a href="/wiki/athletic-career/" class="category-card">
+                    <span class="category-icon">🏀</span>
+                    <h3 class="category-title">Athletic Career</h3>
+                    <p class="category-description">Terry's passion for sports, his basketball career at high school and Simon Fraser University, and his athletic achievements before the diagnosis.</p>
+                    <span class="category-count">📄 12 articles</span>
+                </a>
+
+                <a href="/wiki/cancer-journey/" class="category-card">
+                    <span class="category-icon">🏥</span>
+                    <h3 class="category-title">Cancer Diagnosis & Treatment</h3>
+                    <p class="category-description">The diagnosis of osteosarcoma, amputation, chemotherapy, and how Terry transformed his suffering into purpose.</p>
+                    <span class="category-count">📄 15 articles</span>
+                </a>
+
+                <a href="/wiki/marathon-of-hope/" class="category-card">
+                    <span class="category-icon">🏃</span>
+                    <h3 class="category-title">Marathon of Hope</h3>
+                    <p class="category-description">The complete day-by-day account of Terry's cross-Canada run, from St. John's to Thunder Bay - every city, every milestone, every challenge.</p>
+                    <span class="category-count">📄 45 articles</span>
+                </a>
+
+                <a href="/wiki/legacy/" class="category-card">
+                    <span class="category-icon">🌟</span>
+                    <h3 class="category-title">Legacy & Impact</h3>
+                    <p class="category-description">How Terry changed Canada and the world - the annual runs, cancer research breakthroughs, and ongoing inspiration.</p>
+                    <span class="category-count">📄 22 articles</span>
+                </a>
+
+                <a href="/wiki/people/" class="category-card">
+                    <span class="category-icon">👥</span>
+                    <h3 class="category-title">People & Relationships</h3>
+                    <p class="category-description">The key figures in Terry's life - family members, friends, supporters, and the people who helped make the Marathon possible.</p>
+                    <span class="category-count">📄 25 articles</span>
+                </a>
+
+                <a href="/wiki/places/" class="category-card">
+                    <span class="category-icon">📍</span>
+                    <h3 class="category-title">Places & Locations</h3>
+                    <p class="category-description">Every significant location in Terry's journey - birthplace, homes, schools, hospitals, and every city on the Marathon route.</p>
+                    <span class="category-count">📄 35 articles</span>
+                </a>
+
+                <a href="/wiki/awards/" class="category-card">
+                    <span class="category-icon">🏆</span>
+                    <h3 class="category-title">Awards & Honours</h3>
+                    <p class="category-description">The prestigious awards Terry received and the countless honours bestowed upon his memory - from the Order of Canada to schools named after him.</p>
+                    <span class="category-count">📄 20 articles</span>
+                </a>
+
+                <a href="/wiki/media/" class="category-card">
+                    <span class="category-icon">🎬</span>
+                    <h3 class="category-title">Cultural Impact & Media</h3>
+                    <p class="category-description">Films, documentaries, books, songs, and artwork inspired by Terry Fox - how his story has been told and retold.</p>
+                    <span class="category-count">📄 18 articles</span>
+                </a>
+
+                <a href="/wiki/foundation/" class="category-card">
+                    <span class="category-icon">💝</span>
+                    <h3 class="category-title">Terry Fox Foundation</h3>
+                    <p class="category-description">The organization continuing Terry's mission - history, leadership, annual runs, research funding, and global impact.</p>
+                    <span class="category-count">📄 15 articles</span>
+                </a>
+
+                <a href="/wiki/timeline/" class="category-card">
+                    <span class="category-icon">📅</span>
+                    <h3 class="category-title">Complete Timeline</h3>
+                    <p class="category-description">A comprehensive chronological account of Terry's life and legacy, from birth to present day annual commemorations.</p>
+                    <span class="category-count">📄 8 articles</span>
+                </a>
+
+                <a href="/wiki/quotes/" class="category-card">
+                    <span class="category-icon">💬</span>
+                    <h3 class="category-title">Quotes & Writings</h3>
+                    <p class="category-description">Terry's own words - his letters, speeches, interviews, and the quotes that continue to inspire millions worldwide.</p>
+                    <span class="category-count">📄 10 articles</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="quick-links">
+            <h2>Popular Articles</h2>
+            <div class="quick-links-grid">
+                <a href="/wiki/marathon-of-hope/day-1-st-johns.html" class="quick-link">
+                    <span class="quick-link-icon">🌊</span>
+                    Day 1: St. John's Start
+                </a>
+                <a href="/wiki/marathon-of-hope/thunder-bay-end.html" class="quick-link">
+                    <span class="quick-link-icon">🛑</span>
+                    Day 143: Thunder Bay End
+                </a>
+                <a href="/wiki/people/doug-alward.html" class="quick-link">
+                    <span class="quick-link-icon">👤</span>
+                    Doug Alward
+                </a>
+                <a href="/wiki/people/betty-fox.html" class="quick-link">
+                    <span class="quick-link-icon">👩</span>
+                    Betty Fox (Mother)
+                </a>
+                <a href="/wiki/cancer-journey/osteosarcoma.html" class="quick-link">
+                    <span class="quick-link-icon">🔬</span>
+                    Osteosarcoma Explained
+                </a>
+                <a href="/wiki/awards/order-of-canada.html" class="quick-link">
+                    <span class="quick-link-icon">🍁</span>
+                    Order of Canada
+                </a>
+                <a href="/wiki/places/terry-fox-memorial.html" class="quick-link">
+                    <span class="quick-link-icon">🗿</span>
+                    Terry Fox Memorial
+                </a>
+                <a href="/wiki/foundation/terry-fox-run.html" class="quick-link">
+                    <span class="quick-link-icon">🏃</span>
+                    The Terry Fox Run
+                </a>
+                <a href="/wiki/media/terry-fox-story-film.html" class="quick-link">
+                    <span class="quick-link-icon">🎬</span>
+                    The Terry Fox Story (1983)
+                </a>
+                <a href="/wiki/quotes/famous-quotes.html" class="quick-link">
+                    <span class="quick-link-icon">💬</span>
+                    Famous Quotes
+                </a>
+                <a href="/wiki/legacy/greatest-canadian.html" class="quick-link">
+                    <span class="quick-link-icon">🇨🇦</span>
+                    Greatest Canadian
+                </a>
+                <a href="/wiki/early-life/childhood.html" class="quick-link">
+                    <span class="quick-link-icon">👦</span>
+                    Terry's Childhood
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Articles -->
+        <section class="featured-section">
+            <h2 class="section-title">Featured Articles</h2>
+            <div class="featured-grid">
+                <a href="/wiki/marathon-of-hope/complete-route.html" class="featured-card">
+                    <div class="featured-label">Featured Article</div>
+                    <h3 class="featured-title">The Complete Marathon Route</h3>
+                    <p class="featured-excerpt">An exhaustive guide to every kilometer of Terry's 5,373 km journey - the cities, the people he met, the challenges he faced, and the moments that defined the Marathon of Hope.</p>
+                </a>
+                <a href="/wiki/legacy/cancer-research-impact.html" class="featured-card">
+                    <div class="featured-label">Featured Article</div>
+                    <h3 class="featured-title">$850 Million: The Research Impact</h3>
+                    <p class="featured-excerpt">How Terry Fox funding has transformed cancer research worldwide - breakthrough discoveries, clinical trials, and lives saved through the Marathon of Hope legacy.</p>
+                </a>
+                <a href="/wiki/people/family-tree.html" class="featured-card">
+                    <div class="featured-label">Featured Article</div>
+                    <h3 class="featured-title">The Fox Family</h3>
+                    <p class="featured-excerpt">Meet the family that raised a hero - Rolland and Betty Fox, siblings Fred, Darrell, and Judith, and how they've carried forward Terry's legacy for over four decades.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <h2>Search the Wiki</h2>
+            <p>Find specific information about Terry Fox's life and legacy</p>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search articles..." id="wiki-search">
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Experience Terry's Journey</h2>
+            <p>After exploring the wiki, experience the Marathon of Hope firsthand in our interactive game</p>
+            <div class="cta-buttons">
+                <a href="/game.html" class="cta-button">▶ PLAY THE GAME</a>
+                <a href="/story.html" class="cta-button secondary">READ THE STORY</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <nav class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/story.html">Story</a>
+            <a href="/facts.html">Facts</a>
+            <a href="/game.html">Play Game</a>
+            <a href="https://www.terryfox.org" target="_blank" rel="noopener">Terry Fox Foundation</a>
+        </nav>
+        <p class="footer-text">© 2024 Terry Fox Marathon of Hope | Honoring a Canadian Hero</p>
+    </footer>
+
+    <script>
+        // Simple search functionality
+        document.getElementById('wiki-search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.toLowerCase();
+                // In a real implementation, this would search the wiki
+                alert('Search functionality coming soon! Searching for: ' + query);
+            }
+        });
+    </script>
+</body>
+</html>
