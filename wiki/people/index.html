@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>People in Terry Fox's Life: Family, Friends & Supporters | Terry Fox Wiki</title>
+
+    <meta name="description" content="Meet the people who shaped Terry Fox's life and supported his Marathon of Hope. Family members, friends like Doug Alward, mentors, and the supporters who made the journey possible.">
+    <meta name="keywords" content="terry fox family, terry fox friends, betty fox, rolland fox, doug alward, terry fox supporters, terry fox people">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.terrancestanleyfox.com/wiki/people/">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👥</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        header {
+            padding: 20px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.95rem; opacity: 0.8; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 120px 20px 60px; }
+
+        .breadcrumb { margin-bottom: 30px; font-size: 0.9rem; opacity: 0.7; }
+        .breadcrumb a { color: #4facfe; text-decoration: none; }
+
+        .page-header { text-align: center; margin-bottom: 50px; }
+        .page-icon { font-size: 4rem; margin-bottom: 20px; }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin: 40px 0 25px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .person-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .person-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .person-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .person-avatar { font-size: 2.5rem; }
+
+        .person-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .person-role { font-size: 0.85rem; opacity: 0.7; margin-top: 3px; }
+        .person-description { font-size: 0.95rem; opacity: 0.85; line-height: 1.6; }
+
+        .person-card.featured {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 60px;
+        }
+
+        .footer-links { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 20px; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.7; }
+        .footer-text { opacity: 0.5; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/index.html" class="logo">🏃 TERRY FOX</a>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="/wiki/" class="active">Wiki</a>
+                <a href="/story.html">Story</a>
+                <a href="/facts.html">Facts</a>
+                <a href="/game.html">Play Game</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/wiki/">Wiki</a> / People & Relationships
+        </div>
+
+        <div class="page-header">
+            <div class="page-icon">👥</div>
+            <h1>People & Relationships</h1>
+            <p class="page-subtitle">The family members, friends, mentors, and supporters who were part of Terry Fox's life and made the Marathon of Hope possible.</p>
+        </div>
+
+        <h2 class="section-title">Immediate Family</h2>
+        <div class="people-grid">
+            <a href="/wiki/people/betty-fox.html" class="person-card featured">
+                <div class="person-header">
+                    <span class="person-avatar">👩</span>
+                    <div>
+                        <div class="person-name">Betty Fox</div>
+                        <div class="person-role">Mother (1935-2024)</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's mother who became the driving force behind the Terry Fox Foundation, dedicating her life to continuing his mission after his death.</p>
+            </a>
+
+            <a href="/wiki/people/rolland-fox.html" class="person-card featured">
+                <div class="person-header">
+                    <span class="person-avatar">👨</span>
+                    <div>
+                        <div class="person-name">Rolland Fox</div>
+                        <div class="person-role">Father (1932-2016)</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's father, a CNR switchman who instilled in Terry the values of hard work and perseverance that defined his character.</p>
+            </a>
+
+            <a href="/wiki/people/fred-fox.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">👨</span>
+                    <div>
+                        <div class="person-name">Fred Fox</div>
+                        <div class="person-role">Older Brother</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's older brother, born in 1956, who has continued to support the Terry Fox Foundation and share Terry's story.</p>
+            </a>
+
+            <a href="/wiki/people/darrell-fox.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">👨</span>
+                    <div>
+                        <div class="person-name">Darrell Fox</div>
+                        <div class="person-role">Younger Brother</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's younger brother who served as a spokesperson for the Terry Fox Foundation and helped carry forward Terry's legacy.</p>
+            </a>
+
+            <a href="/wiki/people/judith-fox.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">👩</span>
+                    <div>
+                        <div class="person-name">Judith Fox</div>
+                        <div class="person-role">Younger Sister</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's youngest sibling, who has supported the family's mission to continue Terry's work in cancer research.</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">Marathon of Hope Team</h2>
+        <div class="people-grid">
+            <a href="/wiki/people/doug-alward.html" class="person-card featured">
+                <div class="person-header">
+                    <span class="person-avatar">🚐</span>
+                    <div>
+                        <div class="person-name">Doug Alward</div>
+                        <div class="person-role">Best Friend & Van Driver</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's best friend from high school who drove the support van throughout the Marathon of Hope, providing essential support and companionship.</p>
+            </a>
+
+            <a href="/wiki/people/darrell-fox-support.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🏃</span>
+                    <div>
+                        <div class="person-name">Darrell Fox</div>
+                        <div class="person-role">Support Team (Later Joined)</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's brother Darrell joined the Marathon later in the journey to help with growing media demands and logistics.</p>
+            </a>
+
+            <a href="/wiki/people/bill-vigars.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">📣</span>
+                    <div>
+                        <div class="person-name">Bill Vigars</div>
+                        <div class="person-role">Canadian Cancer Society Rep</div>
+                    </div>
+                </div>
+                <p class="person-description">The Ontario rep from the Canadian Cancer Society who helped coordinate publicity and logistics as the Marathon gained momentum.</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">Mentors & Coaches</h2>
+        <div class="people-grid">
+            <a href="/wiki/people/bob-mcgill.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🏀</span>
+                    <div>
+                        <div class="person-name">Bob McGill</div>
+                        <div class="person-role">PE Teacher & Coach</div>
+                    </div>
+                </div>
+                <p class="person-description">Terry's physical education teacher at Port Coquitlam Senior Secondary who recognized and nurtured his exceptional determination.</p>
+            </a>
+
+            <a href="/wiki/people/terri-fleming.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">👨‍⚕️</span>
+                    <div>
+                        <div class="person-name">Dr. Michael Noble</div>
+                        <div class="person-role">Orthopedic Surgeon</div>
+                    </div>
+                </div>
+                <p class="person-description">The surgeon who performed Terry's amputation and provided ongoing medical guidance during training and the Marathon.</p>
+            </a>
+
+            <a href="/wiki/people/rick-hansen.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">♿</span>
+                    <div>
+                        <div class="person-name">Rick Hansen</div>
+                        <div class="person-role">Friend & Fellow Athlete</div>
+                    </div>
+                </div>
+                <p class="person-description">Paralympic athlete who knew Terry and later completed his own Man in Motion World Tour, inspired by Terry's courage.</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">Notable Supporters</h2>
+        <div class="people-grid">
+            <a href="/wiki/people/bobby-orr.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🏒</span>
+                    <div>
+                        <div class="person-name">Bobby Orr</div>
+                        <div class="person-role">Hockey Legend</div>
+                    </div>
+                </div>
+                <p class="person-description">NHL Hall of Famer who met Terry during the Marathon and provided encouragement and support.</p>
+            </a>
+
+            <a href="/wiki/people/darryl-sittler.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🏒</span>
+                    <div>
+                        <div class="person-name">Darryl Sittler</div>
+                        <div class="person-role">Toronto Maple Leafs Captain</div>
+                    </div>
+                </div>
+                <p class="person-description">Leafs captain who gave Terry his 1980 NHL All-Star Game jersey and championed his cause in Toronto.</p>
+            </a>
+
+            <a href="/wiki/people/isadore-sharp.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🏨</span>
+                    <div>
+                        <div class="person-name">Isadore Sharp</div>
+                        <div class="person-role">Four Seasons Founder</div>
+                    </div>
+                </div>
+                <p class="person-description">Founder of Four Seasons Hotels who organized the first Terry Fox Run after Terry's death and remained a lifelong supporter.</p>
+            </a>
+
+            <a href="/wiki/people/pierre-trudeau.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🇨🇦</span>
+                    <div>
+                        <div class="person-name">Pierre Trudeau</div>
+                        <div class="person-role">Prime Minister of Canada</div>
+                    </div>
+                </div>
+                <p class="person-description">Canada's Prime Minister who met with Terry and ensured he received the Companion of the Order of Canada.</p>
+            </a>
+
+            <a href="/wiki/people/dick-traum.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🏃</span>
+                    <div>
+                        <div class="person-name">Dick Traum</div>
+                        <div class="person-role">Inspiration</div>
+                    </div>
+                </div>
+                <p class="person-description">American amputee marathoner whose story in a magazine inspired Terry to conceive the Marathon of Hope.</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">Medical Team</h2>
+        <div class="people-grid">
+            <a href="/wiki/people/medical-team.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">👨‍⚕️</span>
+                    <div>
+                        <div class="person-name">Medical Team</div>
+                        <div class="person-role">Doctors & Nurses</div>
+                    </div>
+                </div>
+                <p class="person-description">The doctors, nurses, and medical staff who cared for Terry during his cancer treatment and supported his Marathon attempt.</p>
+            </a>
+
+            <a href="/wiki/people/prosthetist.html" class="person-card">
+                <div class="person-header">
+                    <span class="person-avatar">🦿</span>
+                    <div>
+                        <div class="person-name">Prosthetics Team</div>
+                        <div class="person-role">Prosthetic Specialists</div>
+                    </div>
+                </div>
+                <p class="person-description">The specialists who designed and maintained Terry's artificial leg throughout training and the Marathon.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="footer-links">
+            <a href="/index.html">Home</a>
+            <a href="/wiki/">Wiki</a>
+            <a href="/story.html">Story</a>
+            <a href="/game.html">Play Game</a>
+            <a href="https://www.terryfox.org" target="_blank" rel="noopener">Terry Fox Foundation</a>
+        </nav>
+        <p class="footer-text">© 2024 Terry Fox Marathon of Hope | Honoring a Canadian Hero</p>
+    </footer>
+</body>
+</html>
